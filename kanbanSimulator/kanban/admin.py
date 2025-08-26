@@ -9,5 +9,5 @@ class usuarioAdmin(admin.ModelAdmin):
 
 @admin.register(Tarefa)
 class tarefaAdmin(admin.ModelAdmin):
-    fields = ['idTarefa', 'descricao', 'setor', 'dataCriacao', 'idUsuario']
+    fields = ['idTarefa', 'descricao', 'setor', 'prioridade', 'status', 'dataCriacao', 'idUsuario']
 
