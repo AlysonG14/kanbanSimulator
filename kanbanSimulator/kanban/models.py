@@ -15,8 +15,10 @@ class Meta:
 
 
 SETOR = (
-    ("Ativo", 'Ativo'),
-    ("Inativo", 'Inativo'),
+    ("Administração", 'Administração'),
+    ("Mecânica", 'Mecânica'),
+    ("Desenvolvimento Software", 'Desenvolvimento Software'),
+    ("Eletrônica", 'Eletrônica'),
 )
 
 STATUS = (
@@ -36,7 +38,7 @@ class Tarefa(models.Model):
     idTarefa = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=255, null=False, blank=False)
     prioridade = models.CharField(choices=PRIORIDADE, max_length=6, null=False, blank=False)
-    setor = models.CharField(choices= SETOR, max_length=7, null=False, blank=False)
+    setor = models.CharField(choices= SETOR, max_length=24, null=False, blank=False)
     dataCriacao = models.DateTimeField(null=False, blank=False)
     status = models.CharField(choices=STATUS, max_length=11, null=False, blank=False)
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

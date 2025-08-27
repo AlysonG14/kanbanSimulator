@@ -5,9 +5,9 @@ from .models import *
 
 @admin.register(Usuario)
 class usuarioAdmin(admin.ModelAdmin):
-    fields = ['idUsuario', 'nome', 'email']
+    fields = ['nome', 'email']
 
 @admin.register(Tarefa)
 class tarefaAdmin(admin.ModelAdmin):
-    fields = ['idTarefa', 'descricao', 'setor', 'prioridade', 'status', 'dataCriacao', 'idUsuario']
+    fields = ['descricao', 'setor', 'prioridade', 'status', 'dataCriacao', 'idUsuario']
 
