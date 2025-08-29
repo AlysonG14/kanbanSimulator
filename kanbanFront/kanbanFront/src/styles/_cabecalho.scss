@@ -1,0 +1,18 @@
+@use './variaveis' as *;
+
+.container {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: $background;
+
+    .title{
+        color: $cor-principal;
+        font-family: $font-principal;
+        font-size: $font-texto;
+        display: $display;
+        justify-content: $centralizar-items;
+
+    }
+}

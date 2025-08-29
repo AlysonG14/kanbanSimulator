@@ -1,0 +1,23 @@
+@use './variaveis' as *;
+
+.barra {
+    background-color: $background;
+    color: $cor-principal;
+    font-size: $font-texto-nav;
+    height: 40px;
+    width: 100vw;
+
+    ul {
+        display: $display;
+        flex-direction: row;
+        justify-content: $centralizar-items-final;
+        gap: 20px;
+        padding: 10px;
+    }
+    li {
+        text-decoration: none;
+        list-style: none;
+        align-items: center;
+
+    }
+}
