@@ -1,0 +1,35 @@
+@use './variaveis' as *;
+
+.form {
+    max-width: 800px;
+    padding: 5px;
+    background-color: $background;
+    flex-direction: 5px;
+    gap: 5px;
+    display: $display;
+    flex-direction: column;
+    width: 50vh;
+    padding: 1%;
+
+    header{
+        font-size: $font-texto-grande;
+        text-align: $centralizar-texto-centro;
+        color: $cor-principal;
+    }
+
+    label{
+        font-weight: 100;
+        color: $cor-principal; 
+    }
+
+    select, input, textarea {
+        height: $largura-input;
+    }
+    
+    button {
+        background-color: $background;
+        color: $cor-principal;
+        width: fit-content;
+    }
+
+}

@@ -10,9 +10,10 @@
     .title{
         color: $cor-principal;
         font-family: $font-principal;
-        font-size: $font-texto;
+        font-size: $font-texto-grande;
         display: $display;
         justify-content: $centralizar-items;
+        text-align: center;
 
     }
 }
