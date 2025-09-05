@@ -4,9 +4,9 @@ export function BarraNavegacao() {
   return (
     <nav className="barra">
       <ul>
-        <li>User Register</li>
-        <li>Task Register</li>
-        <li>Task Manager</li>
+        <li>Cadastro de Usuário</li>
+        <li>Cadastro de Tarefas</li>
+        <li>Gerenciamento de Tarefas</li>
       </ul>
     </nav>
   );

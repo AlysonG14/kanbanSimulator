@@ -8,13 +8,14 @@ $borda-arrendodada: 6px;
 $font-texto-grande: 30px;
 $font-texto-nav: 16px;
 $font-principal: 'Verdana';
-$centralizar-items: start;
 $display: flex;
 $centralizar-items-final: flex-end;
 $centralizar-texto-centro: center;
-$centralizar-items-comeco: start;
+$centralizar-items-centro: center;
+$centralizar-items: start;
 $borda-arrendodada: 10px;
 $largura-input: 40px;
+$ponteiro: pointer;
 
 *{
     margin: 0;

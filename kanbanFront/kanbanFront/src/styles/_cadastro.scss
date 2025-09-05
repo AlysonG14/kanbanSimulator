@@ -4,12 +4,14 @@
     max-width: 800px;
     padding: 5px;
     background-color: $background;
-    flex-direction: 5px;
     gap: 5px;
     display: $display;
     flex-direction: column;
     width: 50vh;
     padding: 1%;
+    justify-content: $centralizar-items-centro;
+    margin: 2%;
+    border-radius: $borda-arrendodada;
 
     header{
         font-size: $font-texto-grande;
@@ -24,6 +26,7 @@
 
     select, input, textarea {
         height: $largura-input;
+        padding-left: 1%;
     }
     
     button {
