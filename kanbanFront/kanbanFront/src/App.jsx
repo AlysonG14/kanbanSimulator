@@ -2,15 +2,17 @@ import React from "react";
 import { Header } from "./Components/Header";
 import { BarraNavegacao } from "./Components/BarraNavegacao";
 import { CadUsuário } from "./Paginas/CadUsuário";
+import { Quadro } from "./Components/Quadro";
+import { BrowserRouter } from "react-router-dom";
+import { Rotas } from "./Routes/Rotas";
 
+// Permite a navegação na aplicação, mexendo até o endereçamento
 function App() {
   return (
-    <>
-      <Header />
-      <BarraNavegacao />  
-      <CadUsuário />
-    </>
-  )
+    <BrowserRouter>
+      <Rotas />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
