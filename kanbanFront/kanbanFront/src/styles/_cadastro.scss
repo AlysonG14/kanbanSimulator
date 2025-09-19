@@ -32,7 +32,19 @@
     button {
         background-color: $background;
         color: $cor-principal;
-        width: fit-content;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        border-radius: $borda-arrendodada;
+        align-items: $centralizar-items-centro;
+        transition: 1s;
+        cursor: $ponteiro;
+    }
+
+    button:hover{
+        transform: scale(1.2);
+        color: green
     }
 
 }

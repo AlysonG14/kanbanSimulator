@@ -14,24 +14,20 @@ const schemaCadUsuer = z.object({
   name: z
     .string()
     .min(1, "Por favor, digite nome correto!")
+    .regex(
+      new RegExp(/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/)
+    )
     .max(30, "O campo necessita 30 linhas"),
 
   email: z
     .string()
     .min(1, "Por favor, insere um email válido!")
-    .max(50, "O campo precisa de 50 linhas")
+    .regex(new RegExp(/^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/))
     .email("Insere apenas o email válido"),
 });
 
 // Criação de exportação de Componente CadUsuário,
 export function CadUsuário() {
-  
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '' 
-    
-  })
-
   const {
     register, // Registra para mim o que foi digitado
     handleSubmit, // No momento do envio
@@ -64,15 +60,15 @@ export function CadUsuário() {
         <input
           type="text"
           placeholder="Ex: Alyson Pereira"
-          required value={formData.nome}
-          {...register("name")}
+          required
+          {...register("nome")}
         ></input>
         {errors.name && <p>{errors.name.message}</p>}
         <label>Email: </label>
         <input
           type="email"
           placeholder="Ex: alyson45@outlook.com"
-          required value={formData.email}
+          required
           {...register("email")}
         ></input>
         {errors.email && <p>{errors.email.message}</p>}

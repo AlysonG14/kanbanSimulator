@@ -5,9 +5,9 @@ export function BarraNavegacao() {
   return (
     <nav className="barra">
       <ul>
-        <li><Link to="/cadUsuário">Cadastro de Usuário </Link> </li>
-        <li>Cadastro de Tarefas</li>
-        <li> <Link to=""> Gerenciamento de Tarefas </Link> </li>
+        <li><Link to="/">Cadastro de Usuário </Link> </li>
+        <li><Link to="/home/tarefa/"></Link> Cadastro de Tarefas</li>
+        <li><Link to="/home/"> Gerenciamento de Tarefas </Link> </li>
       </ul>
     </nav>
   );
