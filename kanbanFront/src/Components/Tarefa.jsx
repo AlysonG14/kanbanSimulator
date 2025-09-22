@@ -1,10 +1,14 @@
+import React from "react";
+import { Header } from "../Components/Header";
+
 export function Tarefa({ tarefa }) {
   return (
-    <article>
-      <h3 id={tarefa.idTarefa}>{tarefa.descricao}</h3>
+    <article> 
+      <Header />
+      <h3 id={Tarefa.idTarefa}>{Tarefa.descricao}</h3>
       <dl>
         <dt>Setor:</dt>
-        <dd>{tarefa.setor}</dd>
+        <dd>{Tarefa.setor}</dd>
 
         <dt>Prioridade:</dt>
         <dd>{tarefa.prioridade}</dd>

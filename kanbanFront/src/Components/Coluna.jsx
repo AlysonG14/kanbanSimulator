@@ -10,7 +10,6 @@ export function Coluna({ titulo, tarefas = [] }) {
       {tarefas.map((tarefa) => {
         console.log("Dados", tarefa);
         return <Tarefa key={tarefa.idTarefa} tarefa={tarefa} />;
-
       })}
     </section>
   );

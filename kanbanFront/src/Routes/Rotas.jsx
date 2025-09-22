@@ -11,6 +11,7 @@ export function Rotas() {
       <Route path="/" element={<CadUsuário />} />
       <Route path="/home/" element={<Inicial />} />
       <Route path="/home/tarefa/" element={<Tarefa />} />
+      <Route path="/home/quadro/" element={<Quadro />}></Route>
     </Routes>
   );
 }

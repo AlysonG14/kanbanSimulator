@@ -6,18 +6,22 @@
     font-size: $font-texto-nav;
     height: 40px;
     width: 100vw;
+    align-items: center;
 
     ul {
         display: $display;
         flex-direction: row;
-        justify-content: $centralizar-items-final;
         gap: 20px;
         padding: 10px;
+        justify-content: flex-end;
+        align-items: center;
+        height: 40px;
     }
     li {
         text-decoration: none;
         list-style: none;
         align-items: center;
+        color: white;
         cursor: $ponteiro;
 
     }

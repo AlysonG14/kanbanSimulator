@@ -2,15 +2,13 @@
 
 .form {
     max-width: 800px;
-    padding: 5px;
     background-color: $background;
     gap: 5px;
     display: $display;
     flex-direction: column;
-    width: 50vh;
+    width: 100vh;
     padding: 1%;
     justify-content: $centralizar-items-centro;
-    margin: 2%;
     border-radius: $borda-arrendodada;
 
     header{
@@ -44,7 +42,8 @@
 
     button:hover{
         transform: scale(1.2);
-        color: green
+        background-color: green;
+        color: white
     }
 
 }

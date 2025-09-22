@@ -54,26 +54,26 @@ export function CadUsuário() {
   return (
     // no momento da submissão, chamo as funções
     <>
-      <form className="form" onSubmit={handleSubmit(obtainData)}>
-        <header>Cadastro de Usuário</header>
-        <label>Nome: </label>
-        <input
-          type="text"
-          placeholder="Ex: Alyson Pereira"
-          required
-          {...register("nome")}
-        ></input>
-        {errors.name && <p>{errors.name.message}</p>}
-        <label>Email: </label>
-        <input
-          type="email"
-          placeholder="Ex: alyson45@outlook.com"
-          required
-          {...register("email")}
-        ></input>
-        {errors.email && <p>{errors.email.message}</p>}
-        <button type="submit">Cadastro</button>
-      </form>
+        <form className="form" onSubmit={handleSubmit(obtainData)}>
+          <header>Cadastro de Usuário</header>
+          <label>Nome: </label>
+          <input
+            type="text"
+            placeholder="Ex: Alyson Pereira"
+            required
+            {...register("nome")}
+          ></input>
+          {errors.name && <p>{errors.name.message}</p>}
+          <label>Email: </label>
+          <input
+            type="email"
+            placeholder="Ex: alyson45@outlook.com"
+            required
+            {...register("email")}
+          ></input>
+          {errors.email && <p>{errors.email.message}</p>}
+          <button type="submit">Cadastro</button>
+        </form>
     </>
   );
 }

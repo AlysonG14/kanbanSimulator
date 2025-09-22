@@ -1,6 +1,5 @@
 import React from "react";
 import { Header } from "./Components/Header";
-import { BarraNavegacao } from "./Components/BarraNavegacao";
 import { CadUsuário } from "./Paginas/CadUsuário";
 import { Quadro } from "./Components/Quadro";
 import { BrowserRouter } from "react-router-dom";
