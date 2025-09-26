@@ -7,7 +7,7 @@ from .models import *
 class usuarioAdmin(admin.ModelAdmin):
     fields = ['nome', 'email']
 
-@admin.register(Tarefa)
+@admin.register(criarTarefa)
 class tarefaAdmin(admin.ModelAdmin):
     fields = ['descricao', 'setor', 'prioridade', 'status', 'dataCriacao', 'idUsuario']
 

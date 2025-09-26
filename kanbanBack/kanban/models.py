@@ -34,7 +34,7 @@ PRIORIDADE = (
     ("Baixa", "Baixa"),
 )
 
-class Tarefa(models.Model):
+class criarTarefa(models.Model):
     idTarefa = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=255, null=False, blank=False)
     prioridade = models.CharField(choices=PRIORIDADE, max_length=6, null=False, blank=False)

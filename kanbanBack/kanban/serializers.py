@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (Usuario, Tarefa)
+from .models import (Usuario, criarTarefa)
 
 class usuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,5 +8,5 @@ class usuarioSerializer(serializers.ModelSerializer):
 
 class tarefaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tarefa
+        model = criarTarefa
         fields = '__all__'

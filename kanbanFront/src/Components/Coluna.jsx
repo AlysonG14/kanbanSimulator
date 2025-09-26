@@ -7,9 +7,9 @@ export function Coluna({ titulo, tarefas = [] }) {
       <h2>{titulo}</h2>
 
       {/* Manipulação de array para fazer a exibição, eu posso usar o MAP */}
-      {tarefas.map((tarefa) => {
-        console.log("Dados", tarefa);
-        return <Tarefa key={tarefa.idTarefa} tarefa={tarefa} />;
+      {tarefas.map((criarTarefa) => {
+        console.log("Dados", criarTarefa);
+        return <Tarefa key={criarTarefa.idTarefa} tarefa={criarTarefa} />;
       })}
     </section>
   );

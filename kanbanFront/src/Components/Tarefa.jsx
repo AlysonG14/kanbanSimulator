@@ -1,24 +1,24 @@
 import React from "react";
 import { Header } from "../Components/Header";
 
-export function Tarefa({ tarefa }) {
+export function Tarefa({ criarTarefa }) {
   return (
     <article> 
       <Header />
-      <h3 id={Tarefa.idTarefa}>{Tarefa.descricao}</h3>
+      <h3 id={criarTarefa.idTarefa}>{criarTarefa.descricao}</h3>
       <dl>
         <dt>Setor:</dt>
-        <dd>{Tarefa.setor}</dd>
+        <dd>{criarTarefa.setor}</dd>
 
         <dt>Prioridade:</dt>
-        <dd>{tarefa.prioridade}</dd>
+        <dd>{criarTarefa.prioridade}</dd>
       </dl>
       <button type="submit">Editar</button>
       <button type="submit">Excluir</button>
 
       <form>
         <label>Status:</label>
-        <select id={tarefa.idTarefa} name="status">
+        <select id={criarTarefa.idTarefa} name="status">
           <option value="">Selecione o status</option>
           <option value="Fazer">A fazer</option>
           <option value="Progredindo">Fazendo</option>

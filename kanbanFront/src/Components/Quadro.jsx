@@ -8,7 +8,7 @@ import axios from "axios";
 import { Coluna } from "./Coluna";
 
 export function Quadro(){
-    const [tarefas, setTarefas] = useState([]);
+    const [criarTarefa, setTarefas] = useState([]);
 
     //() recepção de parâmeros, {} scripts, [] dependências
     useEffect(() => {
@@ -22,9 +22,9 @@ export function Quadro(){
     }, [])
 
         // tenho 3 arrays de choices, para visualizar o status de tarefa que esteja dentro do Kanban
-    const tarefasAFazer = tarefas.filter(tarefa=>tarefa.status === "Fazer")
-    const tarefasFazendo = tarefas.filter(tarefa=>tarefa.status === "Progredindo")
-    const tarefasConcluido = tarefas.filter(tarefa=>tarefa.status === "Concluído")
+    const tarefasAFazer = criarTarefa.filter(tarefa=>tarefa.status === "Fazer")
+    const tarefasFazendo = criarTarefa.filter(tarefa=>tarefa.status === "Progredindo")
+    const tarefasConcluido = criarTarefa.filter(tarefa=>tarefa.status === "Concluído")
     
 
     return(

@@ -2,7 +2,7 @@ from rest_framework.response import Response # Importando response para retornar
 from rest_framework.decorators import api_view # Importando a view para criar APIs Restful CRUD
 from rest_framework import status # Importando o status HTTP para que possa hospedar o servidor quando ele responde a uma solicitação gerada 
 from .serializers import tarefaSerializer, usuarioSerializer
-from .models import (Tarefa, Usuario)
+from .models import (criarTarefa, Usuario)
 
 # Create your views here.
 
@@ -68,25 +68,25 @@ def deletar_usuario(request, pk):
 
 @api_view([ 'GET' ])
 def lista_tarefa(request):
-        tarefas = Tarefa.objects.all()
+        tarefas = criarTarefa.objects.all()
         serializer = tarefaSerializer(tarefas, many=True)
         return Response(serializer.data)
     
 @api_view([ 'GET' ])
 def lista_tarefa_id(request, pk):
     try:
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = criarTarefa.objects.get(pk=pk)
         serializer = tarefaSerializer(tarefa, partial=True)
-    except Tarefa.DoesNotExist:
+    except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Encontrada'}, status=status.HTTP_404_NOT_FOUND)
     return Response(serializer.data)
 
 @api_view([ 'POST' ])
 def criar_tarefa(request):
     try:
-        tarefa = Tarefa.objects.get()
+        tarefa = criarTarefa.objects.get()
         serializer = tarefaSerializer(data=request.data, partial=True)
-    except Tarefa.DoesNotExist:
+    except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não criado'}, status=status.HTTP_404_NOT_FOUND)
     if serializer.is_valid():
         serializer.save()
@@ -96,9 +96,9 @@ def criar_tarefa(request):
 @api_view([ 'PATCH' ])
 def atualizar_tarefa(request, pk):
     try:
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = criarTarefa.objects.get(pk=pk)
         serializer = tarefaSerializer(tarefa, data=request.data)
-    except Tarefa.DoesNotExist:
+    except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Existe'}, status=status.HTTP_404_NOT_FOUND)
     if serializer.is_valid():
         serializer.save()
@@ -109,9 +109,9 @@ def atualizar_tarefa(request, pk):
 @api_view([ 'DELETE' ])
 def deletar_tarefa(request, pk):
     try:
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = criarTarefa.objects.get(pk=pk)
         serializer = tarefaSerializer(tarefa, data=request.data)
-    except Tarefa.DoesNotExist:
+    except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Existe'}, status=status.HTTP_404_NOT_FOUND)
     if not serializer.is_valid():
         tarefa.delete()
