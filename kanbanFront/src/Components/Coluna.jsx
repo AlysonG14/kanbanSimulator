@@ -2,6 +2,7 @@ import { ta } from "zod/v4/locales";
 import { Tarefa } from "./Tarefa";
 
 export function Coluna({ titulo, tarefas = [] }) {
+  if (!criarTarefa) return null;
   return (
     <section>
       <h2>{titulo}</h2>

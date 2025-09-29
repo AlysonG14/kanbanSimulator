@@ -3,10 +3,12 @@
 // Os triamigos são "zod" "useForm", //resolvers (mãezona)
 
 import React from "react";
-import { z } from "zod";
+import { email, regex, z } from "zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // zod -> campo a campo o que eu valido, e qual é a mensagem que eu exibo
 const schemaCadUsuer = z.object({
@@ -14,15 +16,16 @@ const schemaCadUsuer = z.object({
   name: z
     .string()
     .min(1, "Por favor, digite nome correto!")
-    .regex(
-      new RegExp(/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/)
-    )
-    .max(30, "O campo necessita 30 linhas"),
+    .max(30, "O campo necessita 30 linhas")
+    .regex(new RegExp(/^\w[\w\s]*/), "O nome ele precisa ser formato de texto"),
 
   email: z
     .string()
     .min(1, "Por favor, insere um email válido!")
-    .regex(new RegExp(/^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/))
+    .regex(
+      new RegExp(/^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/),
+      "O email ele precisa ser validado de acordo com as informações"
+    )
     .email("Insere apenas o email válido"),
 });
 
@@ -35,15 +38,20 @@ export function CadUsuário() {
     reset, // Limpa o formulário
   } = useForm({ resolver: zodResolver(schemaCadUsuer) });
 
+  // Usando o navegador -> Para navegar
+
+  const navigate = useNavigate(); // Chama o hook diretamente aqui
+
   async function obtainData(data) {
-    console.log("Valor dos Dados", data);
+    console.log("Valor dos Dados:", data);
 
     // chamada a API
 
     try {
-      await axios.post("http://127.0.0.1:8000", data);
+      await axios.get("http://127.0.0.1:8000/usuario/", data);
       alert("Cadastro de usuário logado com sucesso");
-      reset();
+      reset(); // Limpa o formulário
+      navigate("/home/"); // Redireciona para página inicial
       // Se der erro, mostra a mensagem de problema
     } catch (errors) {
       alert("Erro: O sistema não consegue encontrar algum usuário registrado");
@@ -54,26 +62,26 @@ export function CadUsuário() {
   return (
     // no momento da submissão, chamo as funções
     <>
-        <form className="form" onSubmit={handleSubmit(obtainData)}>
-          <header>Cadastro de Usuário</header>
-          <label>Nome: </label>
-          <input
-            type="text"
-            placeholder="Ex: Alyson Pereira"
-            required
-            {...register("nome")}
-          ></input>
-          {errors.name && <p>{errors.name.message}</p>}
-          <label>Email: </label>
-          <input
-            type="email"
-            placeholder="Ex: alyson45@outlook.com"
-            required
-            {...register("email")}
-          ></input>
-          {errors.email && <p>{errors.email.message}</p>}
-          <button type="submit">Cadastro</button>
-        </form>
+      <form className="form" onSubmit={handleSubmit(obtainData)}>
+        <header>Cadastro de Usuário</header>
+        <label>Nome: </label>
+        <input
+          type="text"
+          placeholder="Ex: Alyson Pereira"
+          required
+          {...register("name")}
+        ></input>
+        {errors.name && <p className="text-white">{errors.name.message}</p>}
+        <label>Email: </label>
+        <input
+          type="email"
+          placeholder="Ex: alyson45@outlook.com"
+          required
+          {...register("email")}
+        ></input>
+        {errors.email && <p className="text-white">{errors.email.message}</p>}
+        <button type="submit">Cadastro</button>
+      </form>
     </>
   );
 }
