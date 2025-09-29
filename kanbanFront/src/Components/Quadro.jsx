@@ -6,36 +6,56 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Coluna } from "./Coluna";
+import { DndContext } from "@dnd-kit/core"; // Biblioteca que me fala qual é area que me permite clicar e arrastar
 
-export function Quadro(){
-    const [criarTarefa, setTarefas] = useState([]);
+export function Quadro({ tarefas }) {
+  function handleDragEnd(event) {
+    const { active, over } = event;
 
-    //() recepção de parâmeros, {} scripts, [] dependências
-    useEffect(() => {
-        const apiURL = 'http:127.0.0.1:8000/tarefa/';
-        // axios faz uma requisição HTTP
-        axios.get(apiURL)
-        // se der bom, eu armazeno o setTarefas usando a resposta do axios
-            .then(response => { setTarefas(response.data)})
-        // se der ruim, eu vou conseguir visualizar o problema no console
-            .catch(error => { console.error(`Erro: ${error}`) })
-    }, [])
+    if (over && active) {
+      const tarefaID = active.id;
+      const novaColuna = over.id;
 
-        // tenho 3 arrays de choices, para visualizar o status de tarefa que esteja dentro do Kanban
-    const tarefasAFazer = criarTarefa.filter(tarefa=>tarefa.status === "Fazer")
-    const tarefasFazendo = criarTarefa.filter(tarefa=>tarefa.status === "Progredindo")
-    const tarefasConcluido = criarTarefa.filter(tarefa=>tarefa.status === "Concluído")
-    
+      setTarefas((prev) => {
+        prev.map((tarefa) =>
+          tarefa.id === tarefaID ? { tarefa, status: novaColuna } : tarefa
+        );
+        axios
+          .patch(`127.0.0.1:8000/tarefa/${tarefaID}`, {
+            status: novaColuna,
+          })
+          .catch((err) => console.error("Houve um erro", err));
+      });
+    }
 
-    return(
+    // tenho 3 arrays de choices, para visualizar o status de tarefa que esteja dentro do Kanban
+    const tarefasAFazer = tarefas.filter((t) => t.status === "Fazer");
+    const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
+    const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
+
+    if (tarefas.length === 0) return null;
+
+    return (
+      <DndContext onDragEnd={handleDragEnd}>
         <main>
-            <h1>Quadro</h1>
-            <Coluna titulo="Fazer" tarefas={tarefasAFazer} />
-            <Coluna titulo="Progredindo" tarefas={tarefasFazendo} />
-            <Coluna titulo="Concluído" tarefas={tarefasConcluido} /> 
+          <section>
+            <h1>Tarefas</h1>
+            <Coluna id="Fazer" titulo="Fazer" tarefas={tarefasAFazer} />
+            <Coluna
+              id="Progredindo"
+              titulo="Progredindo"
+              tarefas={tarefasFazendo}
+            />
+            <Coluna
+              id="Concluído"
+              titulo="Concluído"
+              tarefas={tarefasConcluido}
+            />
+          </section>
         </main>
-    )
-
+      </DndContext>
+    );
+  }
 }
 
 export default Quadro;

@@ -4,7 +4,27 @@ from rest_framework import status # Importando o status HTTP para que possa hosp
 from .serializers import tarefaSerializer, usuarioSerializer
 from .models import (criarTarefa, Usuario)
 
-# Create your views here.
+# Create your views here
+
+# -------------   VISUALIZAÇÃO DE TODAS  ---------------------
+
+@api_view(['GET'])
+def listar_todos(request):
+    api_urls = {
+        'admin/',
+        'usuario/',
+        'usuario/<int:pk>/',
+        'usuario/criar/',
+        'usuario/atualizar/<int:pk>/',
+        'usuario/deletar/<int:pk>/',
+        'tarefa/',
+        'tarefa/<int:pk>/',
+        'tarefa/criar/',
+        'tarefa/atualizar/<int:pk>/',
+        'tarefa/deletar/<int:pk>/',
+    }
+
+    return Response(api_urls)
 
 
 
