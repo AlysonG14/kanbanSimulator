@@ -1,20 +1,42 @@
 @use './variaveis' as *;
 
-.form {
+.login-container{
+    display: flex;
+    justify-content: $centralizar-items-centro;
+    align-items: center;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    .form {
     max-width: 800px;
     background-color: $background;
-    gap: 5px;
+    gap: 10px;
     display: $display;
     flex-direction: column;
-    width: 100vh;
+    width: 100%;
     padding: 1%;
-    justify-content: $centralizar-items-centro;
+    justify-content: center;
     border-radius: $borda-arrendodada;
+    box-shadow: 2px 2px 20px black;
+
+    .card-btn {
+        display: $display;
+        justify-content: $centralizar-items-centro;
+
+    }
 
     header{
         font-size: $font-texto-grande;
         text-align: $centralizar-texto-centro;
         color: $cor-principal;
+        border-radius: 50px;
+        box-shadow:  black;
+        text-shadow: 1px -1px 0 rgb(57, 7, 84),
+        2px -2px 0 rgb(57, 7, 84)
     }
 
     label{
@@ -30,14 +52,18 @@
     button {
         background-color: $background;
         color: $cor-principal;
-        width: 100px;
-        display: flex;
+        width: 200px;
+        display: $display;
         justify-content: center;
-        height: 40px;
+        height: 60px;
+        border: 2px solid white;
         border-radius: $borda-arrendodada;
         align-items: $centralizar-items-centro;
         transition: 1s;
         cursor: $ponteiro;
+        font-size: larger;
+        box-shadow: 1px 1px 10px black;
+
     }
 
     button:hover{
@@ -45,5 +71,6 @@
         background-color: green;
         color: white
     }
+}
 
 }

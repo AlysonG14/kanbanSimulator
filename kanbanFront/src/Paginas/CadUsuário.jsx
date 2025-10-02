@@ -61,7 +61,7 @@ export function CadUsuário() {
 
   return (
     // no momento da submissão, chamo as funções
-    <>
+    <div className="login-container">
       <form className="form" onSubmit={handleSubmit(obtainData)}>
         <header>Cadastro de Usuário</header>
         <label>Nome: </label>
@@ -80,9 +80,11 @@ export function CadUsuário() {
           {...register("email")}
         ></input>
         {errors.email && <p className="text-white">{errors.email.message}</p>}
-        <button type="submit">Cadastro</button>
+        <div className="card-btn">
+          <button type="submit">Cadastro</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

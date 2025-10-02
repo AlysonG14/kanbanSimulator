@@ -34,38 +34,50 @@ export function CadTarefas() {
   };
 
   return (
-    <>
+    <div>
       <Header />
-      <h1>Cadastro de Tarefas</h1>
+      <div className="container-criarTarefas">
+        <section className="card-criarTarefas">
+          <h1>Cadastro de Tarefas</h1>
 
-      <label>Descrição: </label>
-      <input type="text" name="descricao"></input>
+          <label htmlFor="descricao">Descrição: </label>
+          <input type="text" name="descricao"></input>
 
-      <label>Setor: </label>
-      <input type="text" name="setor"></input>
+          <label htmlFor="setor">Setor: </label>
+          <input type="text" name="setor"></input>
 
-      <label htmlFor="usuario">Usuário: </label>
+          <label htmlFor="prioridade">Prioridade: </label>
 
-      <select id="usuario">
-        {tarefas.map((tarefa) => (
-          <option key={tarefa.idTarefa} value={tarefa.name}>
-            {tarefa.idUsuario}- {tarefa.name}
-          </option>
-        ))}
-      </select>
+          <select id="prioridade">
+            <option value="Alta">Alta</option>
+            <option value="Média">Média</option>
+            <option value="Baixa">Baixa</option>
+          </select>
 
-      <label htmlFor="prioridade">Prioridade: </label>
+          <label htmlFor="status">Status: </label>
 
-      <select id="prioridade">
-        <option value="Alta">Alta</option>
-        <option value="Média">Média</option>
-        <option value="Baixa">Baixa</option>
-      </select>
+          <select id="status">
+            <option value="Progredindo">Progredindo</option>
+            <option value="Fazer">Fazer</option>
+            <option value="Concluído">Concluído</option>
+          </select>
 
-      <button onClick={criarItem} type="button">
-        Cadastrar
-      </button>
-    </>
+          <label htmlFor="usuario">Usuário: </label>
+
+          <select id="usuario">
+            {tarefas.map((tarefa) => (
+              <option key={tarefa.idTarefa} value={tarefa.name}>
+                {tarefa.idUsuario}- {tarefa.name}
+              </option>
+            ))}
+          </select>
+
+          <button onClick={criarItem} type="button">
+            Cadastrar
+          </button>
+        </section>
+      </div>
+    </div>
   );
 }
 

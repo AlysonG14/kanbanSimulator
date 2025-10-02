@@ -1,0 +1,36 @@
+@use 'variaveis' as *;
+
+
+.card-tarefas {
+background-color: $background;
+color: white;
+gap: 20px;
+display: $display;
+flex-direction: column;
+font-size: larger;
+width: fit-content;
+padding: 0.2%;
+
+}
+
+
+form {
+    font-size: medium;
+}
+
+button, label, select{
+    font-size: medium;
+    width: fit-content;
+    cursor: pointer;
+}
+
+header{
+    text-align: center;
+    font-size: medium;
+}
+
+dl {
+    font-size: medium;
+
+}
+

@@ -2,4 +2,6 @@
 @use './variaveis' as *;
 @use './cadastro' as *;
 @use './barraNavegacao' as *;
-@use './gerenciarTarefas' as *;
+@use './tarefas' as *;
+@use './quadro' as *;
+@use './cadTarefas' as *;

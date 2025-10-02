@@ -1,0 +1,27 @@
+@use './variaveis' as *;
+
+.container-criarTarefas{
+    min-height: 745px;
+    background-color: aliceblue;
+
+    .card-criarTarefas{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        gap: 5px;
+        padding: 0.5%;
+
+        input{
+            width: 200px;
+            height: 25px;
+        }
+
+        button, select{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            font-size: medium;
+        }
+    }
+
+}

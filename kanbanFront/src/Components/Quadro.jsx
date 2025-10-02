@@ -25,7 +25,7 @@ export function Quadro({ tarefas, setTarefas }) {
       );
 
       axios
-        .patch(`127.0.0.1:8000/tarefa/${tarefaID}`, {
+        .patch(`http://127.0.0.1:8000/tarefa/${tarefaID}`, {
           status: novaColuna,
         })
         .catch((err) => console.error("Houve um erro", err));
@@ -37,12 +37,11 @@ export function Quadro({ tarefas, setTarefas }) {
   const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
   const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
 
-  if (tarefas.length === 0) return <p>Nenhuma tarefa encontrada!</p>;
-
+  if (tarefas.length === 0) return null
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <main>
-        <section>
+        <section className="quadro-container">
           <h1>Tarefas</h1>
           <Coluna id="Fazer" titulo="Fazer" tarefas={tarefasAFazer} />
           <Coluna
