@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Quadro } from "../Components/Quadro";
-import { Coluna } from "../Components/Coluna";
 import { useDraggable } from "@dnd-kit/core";
 import axios from "axios";
 
@@ -34,7 +33,7 @@ export function Tarefa() {
       });
   }, []);
 
-  if (criarTarefa.length === 0) return null;
+  if (criarTarefa.length === 0) return <p>Nenhuma tarefa encontrada.</p>;
 
   // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
   // Ele precisa de 4 características
@@ -51,54 +50,57 @@ export function Tarefa() {
       : undefined;
 
     return (
-      <>
-        <Quadro tarefas={criarTarefa} />
-        <div className="container-tarefas">
-          {criarTarefa.map((tarefa) => (
-            <article
-              key={tarefa.idTarefa}
-              ref={setNodeRef}
-              style={style}
-              {...listeners}
-              {...attributes}
-              className="card-tarefas"
-            >
-              <header>
-                <h3>{tarefa.descricao}</h3>
-              </header>
-              <dl>
-                <dt>Setor:</dt>
-                <dd>{tarefa.setor}</dd>
+      <article
+        ref={setNodeRef}
+        style={style}
+        {...listeners}
+        {...attributes}
+        className="card-tarefas"
+      >
+        <header>
+          <h3>{tarefa.descricao}</h3>
+        </header>
+        <dl>
+          <dt>Setor:</dt>
+          <dd>{tarefa.setor}</dd>
 
-                <dt>Prioridade:</dt>
-                <dd>{tarefa.prioridade}</dd>
-              </dl>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
+          <dt>Prioridade:</dt>
+          <dd>{tarefa.prioridade}</dd>
+        </dl>
+        <button type="button">Editar</button>
+        <button type="button">Excluir</button>
 
-              <form className="card-form">
-                <label>Status:</label>
-                <select
-                  id={tarefa.idTarefa}
-                  name="status"
-                  value={tarefa.status}
-                  onChange={(e) => {
-                    handleStatusChange(tarefa.idTarefa, e.target.value);
-                  }}
-                >
-                  <option value="">Selecione o status</option>
-                  <option value="Fazer">Fazer</option>
-                  <option value="Progredindo">Progredindo</option>
-                  <option value="Concluído">Concluído</option>
-                </select>
-                <button type="submit">Alterar Status</button>
-              </form>
-            </article>
-          )
-          }
-        </div>
-      </>
+        <form className="card-form">
+          <label>Status:</label>
+          <select
+            id={tarefa.idTarefa}
+            name="status"
+            value={tarefa.status}
+            onChange={(e) => {
+              handleStatusChange(tarefa.idTarefa, e.target.value);
+            }}
+          >
+            <option value="">Selecione o status</option>
+            <option value="Fazer">Fazer</option>
+            <option value="Progredindo">Progredindo</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+          <button type="submit">Alterar Status</button>
+        </form>
+      </article>
     );
+  }
+
+  return (
+    <>
+      <Quadro tarefas={criarTarefa} setTarefas={setCriarTarefa} />
+      <div className="container-tarefas">
+        {criarTarefa.map((tarefa) => (
+          <CardTarefa key={tarefa.idTarefa} tarefa={tarefa} />
+        ))}
+      </div>
+    </>
+  );
 }
 
 export default Tarefa;
