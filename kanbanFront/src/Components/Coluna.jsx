@@ -10,6 +10,9 @@ export function Coluna({ id, titulo, tarefas = [] }) {
       <h2>{titulo}</h2>
       {/* Manipulação de array para fazer a exibição, eu posso usar o MAP */}
       {/* Aqui percorremos todas as tarefas recebidas */}
+      
     </section>
   );
 }
+
+export default Coluna;
