@@ -5,13 +5,15 @@ import Quadro from "../Components/Quadro";
 import Tarefa from "../Components/Tarefa";
 import CadUsuário from "../Paginas/CadUsuário";
 import CadTarefas from "../Paginas/CadTarefas";
+import { AtualizarTarefas } from "../Components/AtualizarTarefas";
 
 export function Rotas() {
   return (
     <Routes>
       <Route path="/" element={<CadUsuário />} />
       <Route path="/home/" element={<Home />} />
-      <Route path="/home/cadastrarTarefa/" element={<CadTarefas />} />
+      <Route path="/home/cadastrar/" element={<CadTarefas />} />
+      <Route path="/home/atualizar/" element={<AtualizarTarefas />}/>
     </Routes>
   );
 }

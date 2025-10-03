@@ -1,5 +1,6 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
+import { useNavigate } from "react-router-dom";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
@@ -14,6 +15,12 @@ export function CardTarefa({ tarefa }) {
   const style = transform
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/home/atualizar/");
+  };
 
   return (
     <div>
@@ -34,7 +41,7 @@ export function CardTarefa({ tarefa }) {
           <dt>Prioridade:</dt>
           <dd>{tarefa.prioridade}</dd>
         </dl>
-        <button type="button">Editar</button>
+        <button onClick={handleClick} type="button">Editar</button>
         <button type="button">Excluir</button>
 
         <form>

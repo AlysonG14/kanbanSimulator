@@ -9,7 +9,7 @@ export function Header() {
           <nav className="barra">
             <ul>
               <li><Link to="/">Cadastro de Usuário </Link> </li>
-              <li><Link to="/home/cadastrarTarefa/">Cadastro de Tarefas </Link> </li>
+              <li><Link to="/home/cadastrar/">Cadastro de Tarefas </Link> </li>
               <li><Link to="/home/"> Gerenciamento de Tarefas </Link> </li>
             </ul>
           </nav>
