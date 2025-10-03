@@ -22,7 +22,7 @@ SETOR = (
 )
 
 STATUS = (
-    ('Progredindo', "Progredindo"),
+    ("Progredindo", "Progredindo"),
     ("Fazer", "Fazer"),
     ("Concluído", "Concluído"),
     

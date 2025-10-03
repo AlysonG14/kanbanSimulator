@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 // transform -> É quem me da à sensação de movimento
 export function CardTarefa({ tarefa }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: tarefa.idTarefa.toString(),
+    id: tarefa.idTarefa,
   });
   const style = transform
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
@@ -23,7 +23,7 @@ export function CardTarefa({ tarefa }) {
   };
 
   return (
-    <div>
+    <main>
       <article
         ref={setNodeRef}
         style={style}
@@ -41,7 +41,9 @@ export function CardTarefa({ tarefa }) {
           <dt>Prioridade:</dt>
           <dd>{tarefa.prioridade}</dd>
         </dl>
-        <button onClick={handleClick} type="button">Editar</button>
+        <button onClick={handleClick} type="button">
+          Editar
+        </button>
         <button type="button">Excluir</button>
 
         <form>
@@ -62,7 +64,7 @@ export function CardTarefa({ tarefa }) {
           <button type="submit">Alterar Status</button>
         </form>
       </article>
-    </div>
+    </main>
   );
 }
 

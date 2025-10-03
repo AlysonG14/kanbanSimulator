@@ -1,8 +1,13 @@
 @use './variaveis' as *;
 
-.quadro-container {
-    display: grid;
-    grid-template-columns: 3;
-    background-color: gray;
-    width: fit-content;
+.titulo_tarefa{
+    text-align: center;
+    padding-top: 22px;
+    height: 100px;
+
+}
+.card_quadro {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
 }

@@ -37,23 +37,31 @@ export function Quadro({ tarefas, setTarefas }) {
   const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
   const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
 
-  if (tarefas.length === 0) return null
+  if (tarefas.length === 0) return null;
+
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <main>
-        <section className="quadro-container">
-          <h1>Tarefas</h1>
-          <Coluna id="Fazer" titulo="Fazer" tarefas={tarefasAFazer} />
+        <h1 className="titulo_tarefa">Tarefas</h1>
+        <section className="card_quadro">
+
+          <Coluna 
+          id="Fazer" 
+          titulo="Fazer" 
+          tarefas={tarefasAFazer} />
+
           <Coluna
             id="Progredindo"
             titulo="Progredindo"
             tarefas={tarefasFazendo}
           />
+
           <Coluna
             id="Concluído"
             titulo="Concluído"
             tarefas={tarefasConcluido}
           />
+          
         </section>
       </main>
     </DndContext>
