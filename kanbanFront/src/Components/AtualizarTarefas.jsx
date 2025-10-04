@@ -7,14 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 export function AtualizarTarefas({ idTarefa }) {
   const [usuario, setUsuario] = useState([]); // Essa ferramenta vai guardar as tarefas vindas do backend
-  const [form, setForm] = useState({
-    descricao: "",
-    setor: "",
-    prioridade: "",
-    status: "",
-    usuario: "",
-    dataCriacao: "",
-  });
 
   const atualizaTarefaSchema = z.object({
     descricao: z
@@ -26,7 +18,7 @@ export function AtualizarTarefas({ idTarefa }) {
     prioridade: z.enum(["Alta", "Média", "Baixa"]),
     status: z.enum(["Fazer", "Progredindo", "Concluído"]),
     usuario: z.string(),
-    dataCriacao: z.string()
+    dataCriacao: z.string().optional() // optional -> passa um campo deifinitamente opcional (sem obrigatório) 
   });
 
   const {
@@ -36,7 +28,14 @@ export function AtualizarTarefas({ idTarefa }) {
     reset,
   } = useForm({ 
     resolver: zodResolver(atualizaTarefaSchema),
-    defaultValues: form,
+    defaultValues: {
+    descricao: "",
+    setor: "",
+    prioridade: "",
+    status: "",
+    usuario: "",
+    dataCriacao: "",
+    },
    }); // Ele define uma validação de esquemas do ZOD
   // e bibliotecas de gerenciamento de formulários como React Hook Form
 
@@ -61,14 +60,6 @@ export function AtualizarTarefas({ idTarefa }) {
         .get(`http://127.0.0.1:8000/tarefa/${idTarefa}/`)
         .then((response) => {
           const tarefaData = response.data;
-          setForm({
-            descricao: tarefaData.descricao,
-            setor: tarefaData.setor,
-            prioridade: tarefaData.prioridade,
-            status: tarefaData.status,
-            usuario: String(tarefaData.idUsuario),
-            dataCriacao: tarefaData.dataCriacao,
-          });
           reset({
             descricao: tarefaData.descricao,
             setor: tarefaData.setor,
@@ -85,6 +76,8 @@ export function AtualizarTarefas({ idTarefa }) {
         });
     }
   }, [idTarefa, reset]);
+
+  // Vamos criar uma variável que chama todos os campos selecionados através do parâmetro
 
   // para atualizar uma APIs, vamos implementar uma variável que terá uma requisição de PATCH Update
 
