@@ -16,12 +16,12 @@ export function CardTarefa({ tarefa }) {
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
 
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/home/atualizar/");
-  };
-
+    
+    const handleClick = () => {
+      navigate("/home/atualizar/");
+    };
+    const navigate = useNavigate();
+    
   return (
     <main>
       <article

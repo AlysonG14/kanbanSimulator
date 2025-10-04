@@ -99,7 +99,7 @@ export function CadTarefas() {
           </select>
 
           <button onClick={criarItem} type="button">
-            Cadastrar
+            Cadastrar Tarefa
           </button>
         </section>
       </div>
