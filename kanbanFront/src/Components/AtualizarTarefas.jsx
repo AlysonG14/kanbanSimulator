@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../Components/Header";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export function AtualizarTarefas({ idTarefa }) {
-  const [usuario, setUsuario] = useState([]); // Essa ferramenta vai guardar as tarefas vindas do backend
+export function AtualizarTarefas({ tarefa }) {
+  const [usuarios, setUsuarios] = useState([]); // Essa ferramenta vai guardar as tarefas vindas do backend
 
   const atualizaTarefaSchema = z.object({
     descricao: z
@@ -18,7 +18,7 @@ export function AtualizarTarefas({ idTarefa }) {
     prioridade: z.enum(["Alta", "Média", "Baixa"]),
     status: z.enum(["Fazer", "Progredindo", "Concluído"]),
     usuario: z.string(),
-    dataCriacao: z.string().optional() // optional -> passa um campo deifinitamente opcional (sem obrigatório) 
+    dataCriacao: z.string().optional(), // optional -> passa um campo deifinitamente opcional (sem obrigatório)
   });
 
   const {
@@ -26,39 +26,43 @@ export function AtualizarTarefas({ idTarefa }) {
     handleSubmit, // handleSumit ->
     formState: { errors }, // Erros -> Vai mostrar o erro
     reset,
-  } = useForm({ 
+  } = useForm({
     resolver: zodResolver(atualizaTarefaSchema),
     defaultValues: {
-    descricao: "",
-    setor: "",
-    prioridade: "",
-    status: "",
-    usuario: "",
-    dataCriacao: "",
+      descricao: "",
+      setor: "",
+      prioridade: "",
+      status: "",
+      usuario: "",
+      dataCriacao: "",
     },
-   }); // Ele define uma validação de esquemas do ZOD
+  }); // Ele define uma validação de esquemas do ZOD
   // e bibliotecas de gerenciamento de formulários como React Hook Form
 
   // Aqui vai ser a parte da model de usuário, para poder selecionar qual usuário tem no backend
+
   useEffect(() => {
-    axios
-      // APIs de Usuário
-      .get("http://127.0.0.1:8000/usuario/") // Ele vai pegar a requisição de usuário
-      .then((response) => {
-        setUsuario(response.data);
-      })
-      .catch((error) => {
+    // APIs de Usuário
+    async function fetchUsuarios() {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/usuario/"); // Ele vai pegar a requisição de usuário
+        setUsuarios(response.data);
+      } catch (error) {
         console.error(`Erro: ${error}`);
-      });
+      }
+    }
+    fetchUsuarios();
   }, []);
 
   // Buscar dados para tarefa de edição
 
   useEffect(() => {
-    if (idTarefa) {
-      axios
-        .get(`http://127.0.0.1:8000/tarefa/${idTarefa}/`)
-        .then((response) => {
+    async function fetchTarefa() {
+      if (tarefa) {
+        try {
+          const response = await axios.get(
+            `http://127.0.0.1:8000/tarefa/${tarefa.id}/`
+          );
           const tarefaData = response.data;
           reset({
             descricao: tarefaData.descricao,
@@ -67,15 +71,15 @@ export function AtualizarTarefas({ idTarefa }) {
             status: tarefaData.status,
             usuario: String(tarefaData.idUsuario),
             dataCriacao: tarefaData.dataCriacao,
-
           });
-        })
-        .catch((error) => {
-          alert(`Erro ao carregar suas tarefas: ${error}`);
-          console.error(`Erro ao carregar suas tarefas: ${error}`);
-        });
+        } catch (error) {
+          alert("Erro ao carregar suas tarefas");
+          console.error(`Erro ao carregar suas tarefas ${error}`);
+        }
+      }
     }
-  }, [idTarefa, reset]);
+    fetchTarefa();
+  }, [tarefa, reset]);
 
   // Vamos criar uma variável que chama todos os campos selecionados através do parâmetro
 
@@ -85,8 +89,8 @@ export function AtualizarTarefas({ idTarefa }) {
   const onSubmit = async (data) => {
     try {
       const response = await axios.patch(
-        `http://127.0.0.1:8000/tarefa/atualizar/${idTarefa}/`,
-        data,
+        `http://127.0.0.1:8000/tarefa/atualizar/${tarefa.id}/`,
+        data
       ); // atualizar -> Atualiza o APIs
       alert("Tarefa atualizado com sucesso!");
       console.log("Tarefa atualizado", response.data);
@@ -111,9 +115,7 @@ export function AtualizarTarefas({ idTarefa }) {
           {errors.descricao && <span>{errors.descricao.message}</span>}
 
           <label htmlFor="setor">Setor:</label>
-          <select
-            {...register("setor")}
-          >
+          <select {...register("setor")}>
             {" "}
             {/* Também é possível validar os campos com select com o register*/}
             <option value="">Selecione o Setor:</option>
@@ -127,9 +129,7 @@ export function AtualizarTarefas({ idTarefa }) {
 
           <label>Prioridade: </label>
 
-          <select
-            {...register("prioridade")}
-          >
+          <select {...register("prioridade")}>
             <option value="">Selecione a Prioridade:</option>
             <option value="Alta">Alta</option>
             <option value="Média">Média</option>
@@ -140,9 +140,7 @@ export function AtualizarTarefas({ idTarefa }) {
 
           <label>Status: </label>
 
-          <select
-            {...register("status")}
-          >
+          <select {...register("status")}>
             <option value="">Selecione o Status:</option>
             <option value="Progredindo">Progredindo</option>
             <option value="Fazer">Fazer</option>
@@ -153,10 +151,8 @@ export function AtualizarTarefas({ idTarefa }) {
 
           <label>Usuário: </label>
 
-          <select
-            {...register("usuario")}
-          >
-            {usuario.map((u) => (
+          <select {...register("usuario")}>
+            {usuarios.map((u) => (
               <option key={u.idUsuario} value={u.idUsuario}>
                 {u.idUsuario}- {u.name}
               </option>
@@ -165,9 +161,7 @@ export function AtualizarTarefas({ idTarefa }) {
 
           {errors.usuario && <span>{errors.usuario.message}</span>}
 
-          <button type="submit">
-            Salvar alterações
-          </button>
+          <button type="submit">Salvar alterações</button>
         </form>
       </div>
     </div>

@@ -12,6 +12,8 @@ export function CadTarefas() {
   // utilizar o zod para validação após criar
 
   const criarSchema = z.object({
+    idTarefa: z
+    ,
     descricao: z
       .string()
       .min(2)
@@ -44,6 +46,7 @@ export function CadTarefas() {
       try {
         const respostaTarefa = await axios.get(apiURLTarefa);
         setTarefas(respostaTarefa.data);
+        console.log(respostaTarefa.data);
       } catch (error) {
         console.error(`Erro ao buscar tarefas ${error}`);
       }
@@ -65,6 +68,7 @@ export function CadTarefas() {
   // para criar uma APIs, vamos implementar uma variável que terá uma requisição de POST Create
 
   const criarItem = async () => {
+    const idTarefa = document.querySelector('input[name="idTarefa"]').value
     const descricao = document.querySelector('input[name="descricao"]').value;
     const setor = document.getElementById("setor").value;
     const prioridade = document.getElementById("prioridade").value;
@@ -73,6 +77,7 @@ export function CadTarefas() {
     const dataCriacao = new Date().toISOString();
 
     const novoItem = {
+      idTarefa,
       descricao,
       setor,
       prioridade,
@@ -101,6 +106,14 @@ export function CadTarefas() {
         <form onSubmit={handleSubmit(onSubmit)} className="card-criarTarefas">
           <h1>Cadastro de Tarefas</h1>
 
+          <label htmlFor="idTarefa">ID: </label>
+          <input 
+          type="number"
+          name="idTarefa"
+          {...register("idTarefa")}></input>
+
+          {errors.idTarefa && <span>{errors.idTarefa.message}</span>}
+          
           <label htmlFor="descricao">Descrição: </label>
           <input
             type="text"
