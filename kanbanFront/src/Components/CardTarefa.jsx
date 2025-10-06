@@ -1,6 +1,7 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { useNavigate } from "react-router-dom";
+import { ta } from "zod/v4/locales";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
@@ -18,7 +19,7 @@ export function CardTarefa({ tarefa }) {
 
     
     const handleClick = () => {
-      navigate("/home/atualizar/");
+      navigate(`/home/atualizar/${tarefa.idTarefa}/`);
     };
     const navigate = useNavigate();
     
@@ -33,6 +34,7 @@ export function CardTarefa({ tarefa }) {
       >
         <header>
           <h3>{tarefa.descricao}</h3>
+          <h3>{tarefa.idTarefa}</h3>
         </header>
         <dl>
           <dt>Setor:</dt>

@@ -8,9 +8,9 @@ export function Header() {
       <h1 className="title">Gerenciamento de Tarefas</h1>
           <nav className="barra">
             <ul>
-              <li><Link to="/">Cadastro de Usuário </Link> </li>
-              <li><Link to="/home/cadastrar/">Cadastro de Tarefas </Link> </li>
-              <li><Link to="/home/"> Gerenciamento de Tarefas </Link> </li>
+              <li><a href="/">Cadastro de Usuário </a> </li>
+              <li><a href="/home/cadastrar/">Cadastro de Tarefas </a> </li>
+              <li><a href="/home/"> Gerenciamento de Tarefas </a> </li>
             </ul>
           </nav>
     </header>

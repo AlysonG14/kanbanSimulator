@@ -151,7 +151,10 @@ export function CadTarefas() {
           {errors.status && <span>{errors.status.message}</span>}
 
           <label htmlFor="usuario">Usuário: </label>
-          <select id="usuario" {...register("usuario")}>
+          <select 
+          id="usuario" 
+          {...register("usuario")}>
+            <option value="">Selecione o Usuário: </option>
             {usuarios.map((usuario) => (
               <option key={usuario.idUsuario} value={usuario.idUsuario}>
                 {usuario.idUsuario}- {usuario.name}

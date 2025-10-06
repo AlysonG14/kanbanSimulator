@@ -15,7 +15,7 @@ export function Tarefa() {
     );
   };
 
-  //() recepção de parâmeros, {} scripts, [] dependências
+  // () recepção de parâmeros, {} scripts, [] dependências
   useEffect(() => {
     const apiURL = "http://127.0.0.1:8000/tarefa/";
     axios

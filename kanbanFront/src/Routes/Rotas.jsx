@@ -5,7 +5,7 @@ import Quadro from "../Components/Quadro";
 import Tarefa from "../Components/Tarefa";
 import CadUsuário from "../Paginas/CadUsuário";
 import CadTarefas from "../Paginas/CadTarefas";
-import { AtualizarTarefas } from "../Components/AtualizarTarefas";
+import  AtualizarTarefasWrapper  from "../Components/AtualizarTarefasWrapper";
 
 export function Rotas() {
   return (
@@ -13,7 +13,7 @@ export function Rotas() {
       <Route path="/" element={<CadUsuário />} />
       <Route path="/home/" element={<Home />} />
       <Route path="/home/cadastrar/" element={<CadTarefas />} />
-      <Route path="/home/atualizar/" element={<AtualizarTarefas />}/>
+      <Route path="/home/atualizar/:tarefaID/" element={<AtualizarTarefasWrapper />}/>
     </Routes>
   );
 }

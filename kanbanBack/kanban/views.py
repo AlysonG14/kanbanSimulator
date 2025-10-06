@@ -37,9 +37,9 @@ def lista_usuario(request):
         return Response(serializer.data)
     
 @api_view([ 'GET' ])
-def lista_usuario_id(request, IdUsuario):
+def lista_usuario_id(request, pk):
     try:
-        usuario = Usuario.objects.get(IdUsuario=IdUsuario)
+        usuario = Usuario.objects.get(pk=pk)
         serializer = usuarioSerializer(usuario, partial=True)
     except Usuario.DoesNotExist:
         return Response({'Erro': 'Usuário não Encontrada'}, status=status.HTTP_404_NOT_FOUND)
@@ -53,10 +53,10 @@ def criar_usuario(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view([ 'PATCH' ])
-def atualizar_usuario(request, IdUsuario):
+@api_view([ 'PUT' ])
+def atualizar_usuario(request, pk):
     try:
-        usuario = Usuario.objects.get(IdUsuario=IdUsuario)
+        usuario = Usuario.objects.get(IdUsuario=pk)
     except Usuario.DoesNotExist:
         return Response({'Erro': 'Usuário não Existe'}, status=status.HTTP_404_NOT_FOUND)
     serializer = usuarioSerializer(usuario, data=request.data, partial=True)
@@ -89,9 +89,9 @@ def lista_tarefa(request):
         return Response(serializer.data)
     
 @api_view([ 'GET' ])
-def lista_tarefa_id(request, idTarefa):
+def lista_tarefa_id(request, pk):
     try:
-        tarefa = criarTarefa.objects.get(idTarefa=idTarefa)
+        tarefa = criarTarefa.objects.get(pk=pk)
         serializer = tarefaSerializer(tarefa, partial=True)
     except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Encontrada'}, status=status.HTTP_404_NOT_FOUND)
@@ -105,10 +105,10 @@ def criar_tarefa(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view([ 'PATCH' ])
-def atualizar_tarefa(request, idTarefa):
+@api_view([ 'PUT' ])
+def atualizar_tarefa(request, pk):
     try:
-        tarefa = criarTarefa.objects.get(idTarefa=idTarefa)
+        tarefa = criarTarefa.objects.get(pk=pk)
     except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Encontrada'}, status=status.HTTP_404_NOT_FOUND)
     serializer = tarefaSerializer(tarefa, data=request.data, partial=True)
@@ -119,9 +119,9 @@ def atualizar_tarefa(request, idTarefa):
         
 
 @api_view([ 'DELETE' ])
-def deletar_tarefa(request, idTarefa):
+def deletar_tarefa(request, pk):
     try:
-        tarefa = criarTarefa.objects.get(idTarefa=idTarefa)
+        tarefa = criarTarefa.objects.get(pk=pk)
         serializer = tarefaSerializer(tarefa, data=request.data)
     except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Existe'}, status=status.HTTP_404_NOT_FOUND)
