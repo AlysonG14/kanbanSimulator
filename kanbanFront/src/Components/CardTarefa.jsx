@@ -1,7 +1,6 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { useNavigate } from "react-router-dom";
-import { ta } from "zod/v4/locales";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
@@ -9,17 +8,16 @@ import { ta } from "zod/v4/locales";
 // atributes -> Permite a seleção dele pelos perifericos (mouse, teclado e dedo)
 // listeners -> Ouvintes aquele que estão sempre ouvindo se há algum evento
 // transform -> É quem me da à sensação de movimento
-export function CardTarefa({ tarefa }) {
+export function CardTarefa({ tarefa, handleStatusChange, tarefaID}) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: tarefa.idTarefa,
   });
   const style = transform
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
-
     
     const handleClick = () => {
-      navigate(`/home/atualizar/${tarefa.idTarefa}/`);
+      navigate(`/home/atualizar/${tarefaID}/`);
     };
     const navigate = useNavigate();
     

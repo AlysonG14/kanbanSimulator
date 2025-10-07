@@ -53,7 +53,7 @@ def criar_usuario(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view([ 'PUT' ])
+@api_view([ 'PATCH' ])
 def atualizar_usuario(request, pk):
     try:
         usuario = Usuario.objects.get(IdUsuario=pk)
@@ -105,7 +105,7 @@ def criar_tarefa(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view([ 'PUT' ])
+@api_view([ 'PATCH' ])
 def atualizar_tarefa(request, pk):
     try:
         tarefa = criarTarefa.objects.get(pk=pk)
