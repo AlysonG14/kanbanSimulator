@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { data, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ModalDeletar } from "./ModalDeletar";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
@@ -22,19 +23,7 @@ export function CardTarefa({ tarefa, handleStatusChange, tarefaID }) {
   };
   const navigate = useNavigate();
 
-  const [exclui, setExclui] = useState([]);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const APIURL = `http://127.0.0.1:8000tarefa/deletar/${tarefaID}`
-    axios
-      .get(APIURL)
-      .then
-    setExclui((response) => { response.data })
-    alert("Tarefa excluido com sucesso")
-    console.log(`Tarefa excluído com sucesso: ${response.data}`)
-      .catch((error) => console.error(`Erro: ${error}`))
-  }, [])
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <main>
@@ -59,7 +48,8 @@ export function CardTarefa({ tarefa, handleStatusChange, tarefaID }) {
         <button onClick={handleClick} type="button">
           Editar
         </button>
-        <button onClick={setOpen} type="button">Excluir</button>
+        <button onClick={() => setIsOpen(true)} type="button">Excluir
+        </button>
 
         <form>
           <label>Status:</label>
@@ -79,6 +69,11 @@ export function CardTarefa({ tarefa, handleStatusChange, tarefaID }) {
           <button type="submit">Alterar Status</button>
         </form>
       </article>
+
+      <ModalDeletar
+        abreJanela={isOpen}
+        fechaJanela={() => setIsOpen(false)}
+      />
     </main>
   );
 }
