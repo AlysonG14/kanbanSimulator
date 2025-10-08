@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
@@ -8,19 +9,33 @@ import { useNavigate } from "react-router-dom";
 // atributes -> Permite a seleção dele pelos perifericos (mouse, teclado e dedo)
 // listeners -> Ouvintes aquele que estão sempre ouvindo se há algum evento
 // transform -> É quem me da à sensação de movimento
-export function CardTarefa({ tarefa, handleStatusChange, tarefaID}) {
+export function CardTarefa({ tarefa, handleStatusChange, tarefaID }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: tarefa.idTarefa,
   });
   const style = transform
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
-    
-    const handleClick = () => {
-      navigate(`/home/atualizar/${tarefaID}/`);
-    };
-    const navigate = useNavigate();
-    
+
+  const handleClick = () => {
+    navigate(`/home/atualizar/${tarefaID}/`);
+  };
+  const navigate = useNavigate();
+
+  const [exclui, setExclui] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const APIURL = `http://127.0.0.1:8000tarefa/deletar/${tarefaID}`
+    axios
+      .get(APIURL)
+      .then
+    setExclui((response) => { response.data })
+    alert("Tarefa excluido com sucesso")
+    console.log(`Tarefa excluído com sucesso: ${response.data}`)
+      .catch((error) => console.error(`Erro: ${error}`))
+  }, [])
+
   return (
     <main>
       <article
@@ -44,7 +59,7 @@ export function CardTarefa({ tarefa, handleStatusChange, tarefaID}) {
         <button onClick={handleClick} type="button">
           Editar
         </button>
-        <button type="button">Excluir</button>
+        <button onClick={setOpen} type="button">Excluir</button>
 
         <form>
           <label>Status:</label>
