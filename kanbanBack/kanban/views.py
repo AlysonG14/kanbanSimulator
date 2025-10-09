@@ -122,10 +122,7 @@ def atualizar_tarefa(request, pk):
 def deletar_tarefa(request, pk):
     try:
         tarefa = criarTarefa.objects.get(pk=pk)
-        serializer = tarefaSerializer(tarefa, data=request.data)
     except criarTarefa.DoesNotExist:
         return Response({'Erro': 'Tarefa não Existe'}, status=status.HTTP_404_NOT_FOUND)
-    if not serializer.is_valid():
-        tarefa.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+    tarefa.delete()
+    return Response({'Mensagem': 'Tarefa excluido com sucesso!'}, status=status.HTTP_204_NO_CONTENT)

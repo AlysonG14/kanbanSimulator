@@ -10,6 +10,8 @@ flex-direction: column;
 font-size: larger;
 width: fit-content;
 padding: 5%;
+transition: 0.2s ease;
+user-select: none;
 }
 
 form {

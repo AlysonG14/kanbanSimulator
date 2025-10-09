@@ -23,9 +23,8 @@ export function Quadro({ tarefas, setTarefas }) {
             : tarefa
         )
       );
-
       axios
-        .patch(`http://127.0.0.1:8000/tarefa/${tarefaID}`, {
+        .patch(`http://127.0.0.1:8000/tarefa/${tarefaID}/`, {
           status: novaColuna,
         })
         .catch((err) => console.error("Houve um erro", err));
@@ -37,18 +36,14 @@ export function Quadro({ tarefas, setTarefas }) {
   const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
   const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
 
-  if (tarefas.length === 0) return null;
+  if (tarefas.length == 0) return null;
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <main>
         <h1 className="titulo_tarefa">Tarefas</h1>
         <section className="card_quadro">
-
-          <Coluna 
-          id="Fazer" 
-          titulo="Fazer" 
-          tarefas={tarefasAFazer} />
+          <Coluna id="Fazer" titulo="Fazer" tarefas={tarefasAFazer} />
 
           <Coluna
             id="Progredindo"
@@ -61,7 +56,6 @@ export function Quadro({ tarefas, setTarefas }) {
             titulo="Concluído"
             tarefas={tarefasConcluido}
           />
-          
         </section>
       </main>
     </DndContext>
