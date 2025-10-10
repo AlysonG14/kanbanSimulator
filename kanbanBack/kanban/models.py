@@ -15,10 +15,10 @@ class Meta:
 
 
 SETOR = (
-    ("Setor Y", 'Setor Y'),
-    ("Setor H", 'Setor H'),
-    ("Setor F", 'Setor F'),
-    ("Setor J", 'Setor J'),
+    ("Administração", 'Administração'),
+    ("Desenvolvimento Sistemas", 'Desenvolvimento Sistemas'),
+    ("Tecnologia da Informação", 'Tecnologia da Informação'),
+    ("Indústria 4.0", 'Indústria 4.0'),
 )
 
 STATUS = (
@@ -35,9 +35,10 @@ PRIORIDADE = (
 )
 
 class criarTarefa(models.Model):
+    idTarefa = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=255, null=False, blank=False)
     prioridade = models.CharField(choices=PRIORIDADE, max_length=6, null=False, blank=False)
-    setor = models.CharField(choices= SETOR, max_length=7, null=False, blank=False)
+    setor = models.CharField(choices= SETOR, max_length=24, null=False, blank=False)
     dataCriacao = models.DateTimeField(null=False, blank=False)
     status = models.CharField(choices=STATUS, max_length=11, null=False, blank=False)
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

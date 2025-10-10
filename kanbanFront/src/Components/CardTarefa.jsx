@@ -7,33 +7,30 @@ import { ModalDeletar } from "./ModalDeletar";
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
 // Ele precisa de 4 características
 // setNodeRef -> É o que permite o reconhecimento do que vamos fazer com o DOM
-// atributes -> Permite a seleção dele pelos perifericos (mouse, teclado e dedo)
+// attributes -> Permite a seleção dele pelos perifericos (mouse, teclado e dedo)
 // listeners -> Ouvintes aquele que estão sempre ouvindo se há algum evento
 // transform -> É quem me da à sensação de movimento
 
 export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: tarefa.idTarefa,
+    id: tarefaID,
   });
   const style = {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
-    transition: "transform 0.2s ease",
     cursor: "grab",
   };
   // navega para outra página
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/home/atualizar/${tarefaID}/`);
+    navigate(`/home/atualizar/${tarefaID}/`, { state: { tarefa: tarefa } });
   };
 
   // alterar o estado para abrir o modal page
   const [isOpen, setIsOpen] = useState(false);
   // selecione a tarefa desejado
   const [IdTarefaSelecionada, setIdTarefaSelecionada] = useState(null);
-
-  const [tarefas, setTarefas] = useState([]);
 
   // abre o modal da página de delete
   const abreModal = (idTarefa) => {
@@ -47,16 +44,10 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
   };
 
   return (
-    <article
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
-      className="card-tarefas"
-    >
+    <article ref={setNodeRef} style={style} className="card-tarefas">
       <h3>{tarefa.descricao}</h3>
-      <h3>{tarefa.idTarefa}</h3>
-      <dl>
+      <h3>ID: {tarefa.idTarefa}</h3>
+      <dl {...attributes} {...listeners}>
         <dt>Setor:</dt>
         <dd>{tarefa.setor}</dd>
 
@@ -88,7 +79,7 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
           <option value="Progredindo">Progredindo</option>
           <option value="Concluído">Concluído</option>
         </select>
-        <button type="submit">Alterar Status</button>
+        <button type="submit" disabled={!tarefa.status}>Alterar Status</button>
       </form>
 
       <ModalDeletar
