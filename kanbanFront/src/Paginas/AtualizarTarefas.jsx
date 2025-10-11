@@ -17,7 +17,7 @@ export function AtualizarTarefas({ tarefaID }) {
       .min(2)
       .max(255)
       .nonempty("O campo da descrição é obrigatório"),
-    setor: z.enum(["Setor F", "Setor H", "Setor J", "Setor Y"]),
+    setor: z.enum(["Administração", "Desenvolvimento Sistemas", "Tecnologia da Informação", "Indústria 4.0"]),
     prioridade: z.enum(["Alta", "Média", "Baixa"]),
     status: z.enum(["Fazer", "Progredindo", "Concluído"]),
     usuario: z.union([z.string(), z.number()]),
@@ -110,10 +110,10 @@ const onSubmit = async (data) => {
 
           <label htmlFor="setor">Setor:</label>
           <select {...register("setor")}>
-            <option value="Setor Y">Setor Y</option>
-            <option value="Setor H">Setor H</option>
-            <option value="Setor F">Setor F</option>
-            <option value="Setor J">Setor J</option>
+            <option value="Administração">Administração</option>
+            <option value="Desenvolvimento Sistemas">Desenvolvimento Sistemas</option>
+            <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+            <option value="Indústria 4.0">Indústria 4.0</option>
           </select>
 
           <label htmlFor="prioridade">Prioridade:</label>
