@@ -41,4 +41,10 @@ export function Tarefa() {
   );
 }
 
+<Quadro
+  tarefas={criarTarefa}
+  setTarefas={setCriarTarefa}
+  handleStatusChange={handleStatusChange}
+/>;
+
 export default Tarefa;

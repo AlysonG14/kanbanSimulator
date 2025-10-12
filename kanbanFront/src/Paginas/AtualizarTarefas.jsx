@@ -92,7 +92,7 @@ const onSubmit = async (data) => {
   if (loading) return <p>Carregando dados da tarefa...</p>;
 
   return (
-    <div>
+    <>
       <Header />
       <div className="container-atualizarTarefas">
         <form
@@ -142,7 +142,7 @@ const onSubmit = async (data) => {
           <button type="submit">Atualizar Tarefa</button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

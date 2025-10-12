@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ModalDeletar } from "./ModalDeletar";
 
 // Para fazer o uso do Draggable, eu preciso usar o HOOK respectivo
@@ -60,11 +59,7 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
       <button onClick={() => abreModal(tarefa.idTarefa)} type="button">
         Excluir
       </button>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form>
         <label>Status:</label>
         <select
           id={tarefa.idTarefa}
@@ -74,12 +69,10 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
             handleStatusChange(tarefa.idTarefa, e.target.value);
           }}
         >
-          <option value="">Selecione o status</option>
           <option value="Fazer">Fazer</option>
           <option value="Progredindo">Progredindo</option>
           <option value="Concluído">Concluído</option>
         </select>
-        <button type="submit" disabled={!tarefa.status}>Alterar Status</button>
       </form>
 
       <ModalDeletar

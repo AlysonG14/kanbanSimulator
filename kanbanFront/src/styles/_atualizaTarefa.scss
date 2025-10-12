@@ -1,7 +1,19 @@
 @use './variaveis' as *;
 
 .container-atualizarTarefas{
+    background-color: aliceblue;
+    padding: 5px;
+}
+
+.card-atualizarTarefas{
     display: flex;
+    gap: 10px;
+    width: 20%;
     flex-direction: column;
-    justify-content: center;
+}
+
+label, input, option {
+    font-size: larger;
+    height: 30px;
+
 }
