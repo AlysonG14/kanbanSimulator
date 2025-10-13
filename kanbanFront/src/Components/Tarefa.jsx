@@ -5,16 +5,6 @@ import axios from "axios";
 export function Tarefa() {
   const [criarTarefa, setCriarTarefa] = useState([]);
 
-  const handleStatusChange = (idTarefa, novoStatus) => {
-    setCriarTarefa((prevTarefas) =>
-      prevTarefas.map((tarefa) =>
-        tarefa.idTarefa === idTarefa
-          ? { ...tarefa, status: novoStatus }
-          : tarefa
-      )
-    );
-  };
-
   // () recepção de parâmeros, {} scripts, [] dependências
   useEffect(() => {
     const apiURL = "http://127.0.0.1:8000/tarefa/";
@@ -40,11 +30,5 @@ export function Tarefa() {
     </>
   );
 }
-
-<Quadro
-  tarefas={criarTarefa}
-  setTarefas={setCriarTarefa}
-  handleStatusChange={handleStatusChange}
-/>;
 
 export default Tarefa;

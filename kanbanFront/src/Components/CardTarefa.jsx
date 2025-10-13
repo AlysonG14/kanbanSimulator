@@ -26,6 +26,18 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
     navigate(`/home/atualizar/${tarefaID}/`, { state: { tarefa: tarefa } });
   };
 
+  const [setCriarTarefa] = useState([]);
+
+  handleStatusChange = (idTarefa, novoStatus) => {
+    setCriarTarefa((prevTarefas) =>
+      prevTarefas.map((tarefa) =>
+        tarefa.idTarefa === idTarefa
+          ? { ...tarefa, status: novoStatus }
+          : tarefa
+      )
+    );
+  };
+
   // alterar o estado para abrir o modal page
   const [isOpen, setIsOpen] = useState(false);
   // selecione a tarefa desejado
@@ -53,10 +65,32 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
         <dt>Prioridade:</dt>
         <dd>{tarefa.prioridade}</dd>
       </dl>
-      <button onClick={handleClick} type="button">
+      <button
+        onClick={handleClick}
+        tabIndex={0}
+        type="button"
+        role="button"
+        onKeyDown={(e) => {
+          if (e.key === "Editar" || e.key === " ") {
+            alert("Clicando no Botão: Editar");
+          }
+        }}
+      >
         Editar
       </button>
-      <button onClick={() => abreModal(tarefa.idTarefa)} type="button">
+      <button
+        role="dialog"
+        tabIndex={0}
+        onClick={() => abreModal(tarefa.idTarefa)}
+        type="button"
+        onKeyDown={(e) => {
+          if (e.key == "Excluir" || e.key === " ") {
+            alert("Clicando no botão: Excluir");
+          }
+        }}
+      >
+        {" "}
+        {/* tabindex -> permite que a div recebe o foco do teclado */}
         Excluir
       </button>
       <form>

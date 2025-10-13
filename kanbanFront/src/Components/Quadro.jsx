@@ -7,7 +7,7 @@ import axios from "axios";
 import { Coluna } from "./Coluna";
 import { DndContext } from "@dnd-kit/core"; // Biblioteca que me fala qual é area que me permite clicar e arrastar
 
-export function Quadro({ tarefas, setTarefas, handleStatusChange }) {
+export function Quadro({ tarefas, setTarefas }) {
   function handleDragEnd(event) {
     const { active, over } = event;
 

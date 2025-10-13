@@ -28,7 +28,7 @@ export function ModalDeletar({ abreJanela, fechaJanela, tarefaID }) {
 
   return (
     <main className="container_modal">
-      <article>
+      <article className="modal_content">
         <h1>Tem certeza que deseja deletar a tarefa {tarefaID}?</h1>
         <section className="card_btn">
           <button onClick={deletarTarefa}>Sim</button>
