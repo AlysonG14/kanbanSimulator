@@ -2,6 +2,10 @@
 
 .card_coluna {
     position: relative;
+    width: 300px;
+    display: $display;
+    flex-direction: column;
+    background-color: gray;
 }
 
 .titulo_coluna{

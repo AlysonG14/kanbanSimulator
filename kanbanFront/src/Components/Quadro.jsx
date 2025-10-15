@@ -24,7 +24,7 @@ export function Quadro({ tarefas, setTarefas }) {
         )
       );
       axios
-        .patch(`http://127.0.0.1:8000/tarefa/${tarefaID}/`, {
+        .patch(`http://127.0.0.1:8000/tarefa/atualizar/${tarefaID}/`, {
           status: novaColuna,
         })
         .catch((err) => console.error("Houve um erro", err));

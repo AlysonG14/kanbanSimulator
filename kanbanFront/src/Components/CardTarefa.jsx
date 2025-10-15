@@ -26,17 +26,16 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
     navigate(`/home/atualizar/${tarefaID}/`, { state: { tarefa: tarefa } });
   };
 
-  const [setCriarTarefa] = useState([]);
+  // Alterar o estado do status
 
-  handleStatusChange = (idTarefa, novoStatus) => {
-    setCriarTarefa((prevTarefas) =>
-      prevTarefas.map((tarefa) =>
-        tarefa.idTarefa === idTarefa
-          ? { ...tarefa, status: novoStatus }
-          : tarefa
-      )
-    );
-  };
+  // Criar uma arrow function onde permite que crie novos identificadores: idTarefa e status
+  //Recebe o idTarefa (identificador da tarefa) e o novo status.
+
+  // Usa setAtualizarStatus para atualizar o estado com base no valor anterior (prevTarefas).//
+
+  // Faz um .map() em prevTarefas (que deveria ser um array).//
+
+  // Dentro do map, ele encontra a tarefa com o mesmo idTarefa e cria uma nova cópia dessa tarefa com o novo status.
 
   // alterar o estado para abrir o modal page
   const [isOpen, setIsOpen] = useState(false);
@@ -93,21 +92,6 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
         {/* tabindex -> permite que a div recebe o foco do teclado */}
         Excluir
       </button>
-      <form>
-        <label>Status:</label>
-        <select
-          id={tarefa.idTarefa}
-          name="status"
-          value={tarefa.status}
-          onChange={(e) => {
-            handleStatusChange(tarefa.idTarefa, e.target.value);
-          }}
-        >
-          <option value="Fazer">Fazer</option>
-          <option value="Progredindo">Progredindo</option>
-          <option value="Concluído">Concluído</option>
-        </select>
-      </form>
 
       <ModalDeletar
         abreJanela={isOpen}
