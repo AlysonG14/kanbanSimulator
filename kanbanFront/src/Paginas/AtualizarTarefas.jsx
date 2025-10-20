@@ -4,6 +4,7 @@ import axios from "axios";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { id } from "zod/v4/locales";
 
 export function AtualizarTarefas({ tarefaID }) {
   const [usuarios, setUsuarios] = useState([]);
@@ -101,9 +102,6 @@ const onSubmit = async (data) => {
         >
           <h1>Atualizar Tarefa</h1>
 
-          <label htmlFor="idTarefa">ID:</label>
-          <input type="number" {...register("idTarefa")} disabled />
-
           <label htmlFor="descricao">Descrição:</label>
           <input type="text" {...register("descricao")} />
           {errors.descricao && <span>{errors.descricao.message}</span>}
@@ -139,7 +137,7 @@ const onSubmit = async (data) => {
               </option>
             ))}
           </select>
-          <button type="submit">Atualizar Tarefa</button>
+          <button className="card_button" type="submit">Atualizar Tarefa</button>
         </form>
       </div>
     </>

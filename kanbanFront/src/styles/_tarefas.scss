@@ -1,26 +1,61 @@
 @use 'variaveis' as *;
 
-.card-tarefas {
-background-color: $background;
-color: white;
-gap: 20px;
-border-radius: 20px;
-display: $display;
-flex-direction: column;
-font-size: larger;
-width: fit-content;
-padding: 5%;
-user-select: none;
+.card_tarefas {
+    background-color: $background;
+    color: white;
+    gap: 20px;
+    border-radius: 5px;
+    display: $display;
+    flex-direction: column;
+    justify-content: center;
+    font-size: larger;
+    width: 300px;
+    height: 350px;
+    padding: 5%;
+    user-select: none;
+
+}
+
+.card_tarefas h3{
+    text-align: center;
+}
+
+.card_descricao{
+    display: flex;
+    gap: 4px;
+    font-size: 20px;
 }
 
 form {
     font-size: medium;
 }
 
-button, label, select{
+label, select{
     font-size: medium;
-    width: fit-content;
+    display: $display;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+    transition: 1s;
+    
+}
+
+.card_button {
+    width: 220px;
+    height: 40px;
+    align-items: center;
+    transition: 1s;
     cursor: pointer;
+    font-size: medium;
+    border-radius: 5px;
+
+}
+
+.card_button:hover{
+    background-color: rgb(0, 129, 24);
+    color: white;
+
+
 }
 
 header{
@@ -29,7 +64,7 @@ header{
 }
 
 dl {
-    font-size: medium;
+    font-size: large;
 
 }
 

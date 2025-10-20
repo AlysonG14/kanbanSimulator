@@ -22,8 +22,6 @@ export function Tarefa() {
       });
   }, []);
 
-  if (criarTarefa.length === 0) return <p>Nenhuma tarefa encontrada.</p>;
-
   return (
     <>
       <Quadro tarefas={criarTarefa} setTarefas={setCriarTarefa} />

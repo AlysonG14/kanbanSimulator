@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export function ModalDeletar({ abreJanela, fechaJanela, tarefaID }) {
+export function ModalDeletar({ abreJanela, fechaJanela, tarefaID, onExcluir }) {
   if (!abreJanela) return null;
 
   async function deletarTarefa() {
@@ -17,6 +17,7 @@ export function ModalDeletar({ abreJanela, fechaJanela, tarefaID }) {
       const response = await axios.delete(url);
       console.log("Tarefa deletada com sucesso", response.data);
       fechaJanela();
+      if (onExcluir) onExcluir(tarefaID)
       // Você pode também disparar uma atualização da lista aqui, se quiser
     } catch (error) {
       console.error(

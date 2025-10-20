@@ -64,7 +64,7 @@ export function CadUsuário() {
     <div className="login-container">
       <form className="form" onSubmit={handleSubmit(obtainData)}>
         <header>Cadastro de Usuário</header>
-        <label>Nome: </label>
+        <label htmlFor="name">Nome: </label>
         <input
           type="text"
           placeholder="Ex: Alyson Pereira"
@@ -72,7 +72,7 @@ export function CadUsuário() {
           {...register("name")}
         ></input>
         {errors.name && <p className="text-white">{errors.name.message}</p>}
-        <label>Email: </label>
+        <label htmlFor="email">Email: </label>
         <input
           type="email"
           placeholder="Ex: alyson45@outlook.com"

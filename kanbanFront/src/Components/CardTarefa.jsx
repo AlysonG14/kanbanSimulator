@@ -10,13 +10,13 @@ import { ModalDeletar } from "./ModalDeletar";
 // listeners -> Ouvintes aquele que estão sempre ouvindo se há algum evento
 // transform -> É quem me da à sensação de movimento
 
-export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
+export function CardTarefa({ tarefa, tarefaID, onExcluir }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: tarefaID,
   });
   const style = {
     transform: transform
-      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      ? `translate:(${transform.x}px, ${transform.y}px)`
       : undefined,
     cursor: "grab",
   };
@@ -54,17 +54,21 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
   };
 
   return (
-    <article ref={setNodeRef} style={style} className="card-tarefas">
+    <article ref={setNodeRef} style={style} className="card_tarefas">
       <h3>{tarefa.descricao}</h3>
-      <h3>ID: {tarefa.idTarefa}</h3>
+      <h4>ID: {tarefa.idTarefa}</h4>
       <dl {...attributes} {...listeners}>
-        <dt>Setor:</dt>
-        <dd>{tarefa.setor}</dd>
-
-        <dt>Prioridade:</dt>
-        <dd>{tarefa.prioridade}</dd>
+        <section className="card_descricao">
+          <dt>Setor:</dt>
+          <dd>{tarefa.setor}</dd>
+        </section>
+        <section className="card_descricao">
+          <dt>Prioridade:</dt>
+          <dd>{tarefa.prioridade}</dd>
+        </section>
       </dl>
       <button
+        className="card_button"
         onClick={handleClick}
         tabIndex={0}
         type="button"
@@ -78,6 +82,7 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
         Editar
       </button>
       <button
+        className="card_button"
         role="dialog"
         tabIndex={0}
         onClick={() => abreModal(tarefa.idTarefa)}
@@ -97,6 +102,7 @@ export function CardTarefa({ tarefa, tarefaID, handleStatusChange }) {
         abreJanela={isOpen}
         fechaJanela={fecharModal}
         tarefaID={IdTarefaSelecionada}
+        onExcluir={onExcluir}
       />
     </article>
   );

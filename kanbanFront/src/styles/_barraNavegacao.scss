@@ -23,8 +23,6 @@
         align-items: center;
         cursor: $ponteiro;
         font-size: larger;
-        transition: 1s;
-        border: solid ;
         height: fit-content;
         padding: 8px;
         width: fit-content;
@@ -35,7 +33,7 @@
         }
         
     } li:hover {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 
 

@@ -2,12 +2,15 @@
 
 .titulo_tarefa{
     text-align: center;
-    padding-top: 22px;
+    padding-top: 30px;
     height: 100px;
+    background-color: #56006b;
+    color: rgb(255, 255, 255);
 
 }
 .card_quadro {
     display: flex;
+    margin-top: 20px;
     justify-content: space-around;
     gap: 20px;
 }

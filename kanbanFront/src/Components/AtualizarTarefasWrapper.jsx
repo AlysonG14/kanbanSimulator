@@ -14,7 +14,6 @@ export function AtualizarTarefasWrapper() {
   return (
     <>
       <AtualizarTarefas tarefaID={parseInt(tarefaID)} />
-      <CardTarefa tarefa={tarefa} tarefaID={parseInt(tarefaID)} />
     </>
   );
 }

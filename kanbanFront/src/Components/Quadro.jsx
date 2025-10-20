@@ -31,12 +31,17 @@ export function Quadro({ tarefas, setTarefas }) {
     }
   }
 
+  //  Função para atualizar o botão excluir após o frontend
+
+  const handleStatusExcluir = (idTarefa) => {
+    setTarefas((prevTarefas) => prevTarefas.filter((tarefa) => tarefa.idTarefa !== idTarefa))
+  }
+
   // tenho 3 arrays de choices, para visualizar o status de tarefa que esteja dentro do Kanban
   const tarefasAFazer = tarefas.filter((t) => t.status === "Fazer");
   const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
   const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
 
-  if (tarefas.length == 0) return null;
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
@@ -49,12 +54,14 @@ export function Quadro({ tarefas, setTarefas }) {
             id="Progredindo"
             titulo="Progredindo"
             tarefas={tarefasFazendo}
+            onExcluir={handleStatusExcluir}
           />
 
           <Coluna
             id="Concluído"
             titulo="Concluído"
             tarefas={tarefasConcluido}
+            onExcluir={handleStatusExcluir}
           />
         </section>
       </main>

@@ -1,7 +1,7 @@
 @use './variaveis' as *;
 
 .container-criarTarefas{
-    min-height: 1000px;
+    height: 93.5vh;
     background-color: aliceblue;
 
     .card-criarTarefas{
@@ -13,7 +13,7 @@
 
         input{
             width: 200px;
-            height: 25px;
+            height: 25px;   
         }
 
         button, select{
@@ -21,7 +21,15 @@
             height: 30px;
             text-align: center;
             font-size: medium;
+            cursor: pointer;
+            transition: 1s  ;
         }
+
+        button:hover {
+            color: white;
+            background-color: green;
+        }
+        
     }
 
 }

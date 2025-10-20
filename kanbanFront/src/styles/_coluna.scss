@@ -2,10 +2,14 @@
 
 .card_coluna {
     position: relative;
-    width: 300px;
+    width: 350px;
+    padding: 2%;
     display: $display;
     flex-direction: column;
-    background-color: gray;
+    background-color: rgb(221, 221, 221);
+    color: black;
+    gap: 20px;
+    align-items: center ;
 }
 
 .titulo_coluna{
