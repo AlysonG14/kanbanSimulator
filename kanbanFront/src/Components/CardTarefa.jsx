@@ -53,21 +53,28 @@ export function CardTarefa({ tarefa, tarefaID, onExcluir }) {
     setIdTarefaSelecionada(null);
   };
 
+  // parte da Tarefa e todas as suas informações
+
   return (
     <article ref={setNodeRef} style={style} className="card_tarefas">
       <h3>{tarefa.descricao}</h3>
       <h4>ID: {tarefa.idTarefa}</h4>
-      <dl {...attributes} {...listeners}>
-        <section className="card_descricao">
-          <dt>Setor:</dt>
+      <section className="card_campoTarefa" {...attributes} {...listeners}>
+        <dl className="card_descricao">
+          <dt aria-describedby="setor">Setor:</dt>
           <dd>{tarefa.setor}</dd>
-        </section>
-        <section className="card_descricao">
-          <dt>Prioridade:</dt>
+        </dl>
+        <dl className="card_descricao">
+          <dt aria-describedby="prioridade">Prioridade:</dt>
           <dd>{tarefa.prioridade}</dd>
-        </section>
-      </dl>
+        </dl>
+        <dl className="card_descricao">
+          <dt aria-describedby="status">Status:</dt>
+          <dd>{tarefa.status}</dd>
+        </dl>
+      </section>
       <button
+        aria-label="Editar"
         className="card_button"
         onClick={handleClick}
         tabIndex={0}
@@ -82,11 +89,13 @@ export function CardTarefa({ tarefa, tarefaID, onExcluir }) {
         Editar
       </button>
       <button
+        aria-label="Excluir"
         className="card_button"
-        role="dialog"
+        role="button"
+        type="button"
+        aria-labelledby="excluir-tarefa"
         tabIndex={0}
         onClick={() => abreModal(tarefa.idTarefa)}
-        type="button"
         onKeyDown={(e) => {
           if (e.key == "Excluir" || e.key === " ") {
             alert("Clicando no botão: Excluir");

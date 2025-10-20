@@ -4,14 +4,20 @@ import axios from "axios";
 export function ModalDeletar({ abreJanela, fechaJanela, tarefaID, onExcluir }) {
   if (!abreJanela) return null;
 
+  // encontra o id da tarefa
+
   async function deletarTarefa() {
     if (!tarefaID) {
       alert("ID da tarefa não encontrado");
       return;
     }
 
+    // acessa o url para deletar
+
     const url = `http://127.0.0.1:8000/tarefa/deletar/${tarefaID}/`;
     console.log("URL para deletar:", url);
+
+    // usando axios para deletar uma tarefa e a sua lógica
 
     try {
       const response = await axios.delete(url);
@@ -26,6 +32,8 @@ export function ModalDeletar({ abreJanela, fechaJanela, tarefaID, onExcluir }) {
       );
     }
   }
+
+  // parte onde deleta tarefas na MODAL
 
   return (
     <main className="container_modal">

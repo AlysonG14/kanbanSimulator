@@ -3,7 +3,7 @@
 .container-atualizarTarefas{
     height: 93.5vh;
     background-color: aliceblue;
-    padding: 5px;
+    padding: 10px;
 }
 
 .card-atualizarTarefas{
@@ -13,8 +13,28 @@
     flex-direction: column;
 }
 
-label, input, option {
-    font-size: larger;
-    height: 30px;
+.card_campos {
+    display: $display;
+    flex-direction: column;
+    gap: 5px;
+}
 
+.card_campos select, option{
+    text-align: center;
+    cursor: pointer;
+}
+
+label, option {
+    font-size: larger;
+}
+
+.input_descricao {
+    font-size: medium;
+    width: fit-content;
+    height: 25px;
+}
+
+.card_button_atualiza {
+    width: 53%;
+    font-size: $font-texto-nav;
 }

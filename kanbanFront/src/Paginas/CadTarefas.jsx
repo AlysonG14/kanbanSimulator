@@ -24,6 +24,8 @@ export function CadTarefas() {
     dataCriacao: z.string(),
   });
 
+  // validação usando o zodresolver
+
   const {
     register,
     handleSubmit,
@@ -31,6 +33,8 @@ export function CadTarefas() {
   } = useForm({
     resolver: zodResolver(criarSchema),
   });
+
+  // pegando os dados dos objetos pelo onsubmit
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -40,6 +44,8 @@ export function CadTarefas() {
     const apiURLTarefa = "http://127.0.0.1:8000/tarefa/"; // Api de Tarefa
     const apiURLUsuario = "http://127.0.0.1:8000/usuario/"; // Api de Usuário
 
+    // puxando os itens para criar, juntamento com axios
+
     const fetchTarefas = async () => {
       try {
         const respostaTarefa = await axios.get(apiURLTarefa);
@@ -48,7 +54,9 @@ export function CadTarefas() {
       } catch (error) {
         console.error(`Erro ao buscar tarefas ${error}`);
       }
-    };
+    }; 
+
+    // vamos buscar o usuário, para colocar dentro do cadastramento de tarefas
 
     const fetchUsuario = async () => {
       try {
@@ -65,6 +73,7 @@ export function CadTarefas() {
 
   // para criar uma APIs, vamos implementar uma variável que terá uma requisição de POST Create
 
+  // aqui, essa arrow functions vai pegar todos os elementos campos necessários para que possa criar as tarefas 
   const criarItem = async () => {
     const descricao = document.querySelector('input[name="descricao"]').value;
     const setor = document.getElementById("setor").value;
@@ -72,6 +81,8 @@ export function CadTarefas() {
     const status = document.getElementById("status").value;
     const idUsuario = document.getElementById("usuario").value;
     const dataCriacao = new Date().toISOString();
+
+    // depois disso, vamos criar outra variável de objetos, onde vai ser armazenado dentro do frontend e fazer uma requisição e ser enviado pelo backend
 
     const novoItem = {
       descricao,
@@ -81,6 +92,9 @@ export function CadTarefas() {
       status,
       idUsuario,
     };
+    
+    // criando modelos do backend através do post, que vem dentro do frontend
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/tarefa/criar/",
@@ -94,6 +108,8 @@ export function CadTarefas() {
       console.error(`Erro: ${error}`);
     }
   };
+
+  // aqui, vai ser uma página de cadastramento de tarefas, implementando todo o contexto de validação dentro do formulário e os erros, quando o usuário digita algo errado
 
   return (
     <div>

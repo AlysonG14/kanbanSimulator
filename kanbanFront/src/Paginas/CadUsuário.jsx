@@ -60,7 +60,7 @@ export function CadUsuário() {
   }
 
   return (
-    // no momento da submissão, chamo as funções
+    // no momento da submissão, chamo as funções dentro do cad usuário e as suas validações
     <div className="login-container">
       <form className="form" onSubmit={handleSubmit(obtainData)}>
         <header>Cadastro de Usuário</header>
@@ -68,6 +68,7 @@ export function CadUsuário() {
         <input
           type="text"
           placeholder="Ex: Alyson Pereira"
+          aria-labelledby="dica-nome"
           required
           {...register("name")}
         ></input>
@@ -76,6 +77,7 @@ export function CadUsuário() {
         <input
           type="email"
           placeholder="Ex: alyson45@outlook.com"
+          aria-labelledby="dica-email"
           required
           {...register("email")}
         ></input>

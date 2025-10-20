@@ -22,6 +22,8 @@ export function Tarefa() {
       });
   }, []);
 
+  // parte de tarefa e onde vai ser jogado, utilizando o campo do quadro
+
   return (
     <>
       <Quadro tarefas={criarTarefa} setTarefas={setCriarTarefa} />

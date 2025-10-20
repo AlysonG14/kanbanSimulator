@@ -11,6 +11,8 @@ export function Quadro({ tarefas, setTarefas }) {
   function handleDragEnd(event) {
     const { active, over } = event;
 
+    // ativa o arrastamento para o local desejado
+
     if (over && active) {
       const tarefaID = active.id;
       const novaColuna = over.id;
@@ -22,6 +24,7 @@ export function Quadro({ tarefas, setTarefas }) {
             ? { ...tarefa, status: novaColuna }
             : tarefa
         )
+        // utiliza o axios para quando o usuário arrastar para outro status apenas atualizando o campo do status
       );
       axios
         .patch(`http://127.0.0.1:8000/tarefa/atualizar/${tarefaID}/`, {
@@ -42,9 +45,10 @@ export function Quadro({ tarefas, setTarefas }) {
   const tarefasFazendo = tarefas.filter((t) => t.status === "Progredindo");
   const tarefasConcluido = tarefas.filter((t) => t.status === "Concluído");
 
+  // Parte onde vai ficar cada coluna de status
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd}> {/* puxando o componente drag end dentro do quadro, para começar a usar o drag and drop */}
       <main>
         <h1 className="titulo_tarefa">Tarefas</h1>
         <section className="card_quadro">

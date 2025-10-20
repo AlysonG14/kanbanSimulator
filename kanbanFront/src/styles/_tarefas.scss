@@ -16,6 +16,12 @@
 
 }
 
+.card_campoTarefa{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .card_tarefas h3{
     text-align: center;
 }
