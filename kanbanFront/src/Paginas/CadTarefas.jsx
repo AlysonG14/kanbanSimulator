@@ -118,15 +118,15 @@ export function CadTarefas() {
         <form onSubmit={handleSubmit(onSubmit)} className="card-criarTarefas">
           <h1>Cadastro de Tarefas</h1>
           
-          <label htmlFor="descricao">Descrição: </label>
+          <label aria-describedby="descricao" htmlFor="descricao">Descrição: </label>
           <input
             type="text"
             name="descricao"
             {...register("descricao")}
           ></input>
-          {errors.descricao && <span>{errors.descricao.message}</span>}
+          {errors.descricao && <span role="alert">{errors.descricao.message}</span>}
 
-          <label htmlFor="setor">Setor:</label>
+          <label aria-describedby="setor" htmlFor="setor">Setor:</label>
           <select id="setor" {...register("setor")}>
             <option value="Administração">Administração</option>
             <option value="Desenvolvimento Sistemas">Desenvolvimento Sistemas</option>
@@ -134,27 +134,27 @@ export function CadTarefas() {
             <option value="Indústria 4.0">Indústria 4.0</option>
           </select>
 
-          {errors.setor && <span>{errors.setor.message}</span>}
+          {errors.setor && <span role="alert">{errors.setor.message}</span>}
 
-          <label htmlFor="prioridade">Prioridade: </label>
+          <label aria-describedby="prioridade" htmlFor="prioridade">Prioridade: </label>
           <select id="prioridade" {...register("prioridade")}>
             <option value="Alta">Alta</option>
             <option value="Média">Média</option>
             <option value="Baixa">Baixa</option>
           </select>
 
-          {errors.prioridade && <span>{errors.prioridade.message}</span>}
+          {errors.prioridade && <span role="alert">{errors.prioridade.message}</span>}
 
-          <label htmlFor="status">Status: </label>
+          <label aria-describedby="status" htmlFor="status">Status: </label>
           <select id="status" {...register("status")}>
             <option value="Progredindo">Progredindo</option>
             <option value="Fazer">Fazer</option>
             <option value="Concluído">Concluído</option>
           </select>
 
-          {errors.status && <span>{errors.status.message}</span>}
+          {errors.status && <span role="alert">{errors.status.message}</span>}
 
-          <label htmlFor="usuario">Usuário: </label>
+          <label aria-describedby="usuario" htmlFor="usuario">Usuário: </label>
           <select 
           id="usuario" 
           {...register("usuario")}>
@@ -166,9 +166,9 @@ export function CadTarefas() {
             ))}
           </select>
 
-          {errors.usuario && <span>{errors.usuario.message}</span>}
+          {errors.usuario && <span role="alert">{errors.usuario.message}</span>}
 
-          <button onClick={criarItem} type="button">
+          <button aria-label="cadastrar tarefa" onClick={criarItem} type="button">
             Cadastrar Tarefa
           </button>
         </form>

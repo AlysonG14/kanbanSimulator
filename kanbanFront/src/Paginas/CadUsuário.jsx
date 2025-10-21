@@ -72,7 +72,7 @@ export function CadUsuário() {
           required
           {...register("name")}
         ></input>
-        {errors.name && <p className="text-white">{errors.name.message}</p>}
+        {errors.name && <p role="alert" className="text-white">{errors.name.message}</p>}
         <label htmlFor="email">Email: </label>
         <input
           type="email"
@@ -81,7 +81,7 @@ export function CadUsuário() {
           required
           {...register("email")}
         ></input>
-        {errors.email && <p className="text-white">{errors.email.message}</p>}
+        {errors.email && <p role="alert" className="text-white">{errors.email.message}</p>}
         <div className="card-btn">
           <button type="submit">Cadastro</button>
         </div>

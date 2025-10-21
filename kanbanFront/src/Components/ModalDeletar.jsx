@@ -40,8 +40,8 @@ export function ModalDeletar({ abreJanela, fechaJanela, tarefaID, onExcluir }) {
       <article className="modal_content">
         <h1>Tem certeza que deseja deletar a tarefa {tarefaID}?</h1>
         <section className="card_btn">
-          <button onClick={deletarTarefa}>Sim</button>
-          <button onClick={fechaJanela} type="button">
+          <button aria-labelledby="modal-delete-yes" tabIndex={0}  role="button" onClick={deletarTarefa}>Sim</button>
+          <button aria-labelledby="modal-delete-no" tabIndex={0} role="button" onClick={fechaJanela} type="button">
             Não
           </button>
         </section>

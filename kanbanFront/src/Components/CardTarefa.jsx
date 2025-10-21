@@ -16,7 +16,7 @@ export function CardTarefa({ tarefa, tarefaID, onExcluir }) {
   });
   const style = {
     transform: transform
-      ? `translate:(${transform.x}px, ${transform.y}px)`
+      ? `translate(${transform.x}px, ${transform.y}px)`
       : undefined,
     cursor: "grab",
   };
@@ -59,47 +59,41 @@ export function CardTarefa({ tarefa, tarefaID, onExcluir }) {
     <article ref={setNodeRef} style={style} className="card_tarefas">
       <h3>{tarefa.descricao}</h3>
       <h4>ID: {tarefa.idTarefa}</h4>
-      <section className="card_campoTarefa" {...attributes} {...listeners}>
+      <section
+        aria-label="Informações da tarefa"
+        className="card_campoTarefa"
+        {...attributes}
+        {...listeners}
+      >
         <dl className="card_descricao">
-          <dt aria-describedby="setor">Setor:</dt>
+          <dt>Setor:</dt>
           <dd>{tarefa.setor}</dd>
         </dl>
         <dl className="card_descricao">
-          <dt aria-describedby="prioridade">Prioridade:</dt>
+          <dt>Prioridade:</dt>
           <dd>{tarefa.prioridade}</dd>
         </dl>
         <dl className="card_descricao">
-          <dt aria-describedby="status">Status:</dt>
+          <dt>Status:</dt>
           <dd>{tarefa.status}</dd>
         </dl>
       </section>
       <button
-        aria-label="Editar"
+        aria-label="Editar tarefa"
         className="card_button"
         onClick={handleClick}
-        tabIndex={0}
-        type="button"
-        role="button"
         onKeyDown={(e) => {
-          if (e.key === "Editar" || e.key === " ") {
-            alert("Clicando no Botão: Editar");
-          }
+          if (e.key === "Enter" || e.key === " ") handleClick();
         }}
       >
         Editar
       </button>
       <button
-        aria-label="Excluir"
+        aria-label={`Excluir tarefa ${tarefa.descricao}`}
         className="card_button"
-        role="button"
-        type="button"
-        aria-labelledby="excluir-tarefa"
-        tabIndex={0}
         onClick={() => abreModal(tarefa.idTarefa)}
         onKeyDown={(e) => {
-          if (e.key == "Excluir" || e.key === " ") {
-            alert("Clicando no botão: Excluir");
-          }
+          if (e.key === "Enter" || e.key === " ") abreModal(tarefa.idTarefa);
         }}
       >
         {" "}
